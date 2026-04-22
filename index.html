@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abnehmen zum letzten Mal – David Rybka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #F57C00;
+  --orange-dark: #BF360C;
+  --orange-light: #FF9800;
+  --black: #0a0a0a;
+  --dark: #1a1a1a;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --text: #333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(10px);
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--orange); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--black) 0%, #1a0a00 50%, #2d1200 100%);
+  display: flex;
+  align-items: center;
+  padding: 100px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,124,0,0.12) 0%, transparent 70%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,124,0,0.06) 0%, transparent 70%);
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(245,124,0,0.15);
+  border: 1px solid rgba(245,124,0,0.3);
+  color: var(--orange-light);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  margin-bottom: 28px;
+}
+
+.hero-title {
+  font-size: 62px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.hero-title span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36px;
+  color: rgba(255,255,255,0.5);
+  text-transform: none;
+  letter-spacing: 2px;
+  margin: 6px 0;
+}
+.hero-title .orange { color: var(--orange); }
+
+.hero-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.stat {
+  text-align: center;
+}
+.stat-number {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.hero-cta:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
+}
+
+.hero-cover {
+  position: relative;
+}
+.cover-mockup {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  display: block;
+  background: linear-gradient(160deg, #FF8C00 0%, #F57C00 30%, #E65100 70%, #BF360C 100%);
+  padding: 48px 40px;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(245,124,0,0.2);
+}
+.cover-tag {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.2);
+  padding: 5px 10px;
+  margin-bottom: 28px;
+  display: inline-block;
+}
+.cover-title-big {
+  font-size: 54px;
+  font-weight: 900;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 0.95;
+}
+.cover-title-mid {
+  font-size: 24px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin: 8px 0 4px;
+}
+.cover-title-bot {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  border-bottom: 3px solid rgba(255,255,255,0.35);
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+.cover-subtitle-small {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.cover-badge {
+  background: rgba(0,0,0,0.25);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.cover-badge-num {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.cover-badge-text {
+  font-size: 9px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.7;
+}
+.cover-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+.cover-feature {
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.cover-feature::before { content: '•'; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+.cover-feature strong { color: var(--white); font-weight: 600; }
+.cover-author-small {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+.cover-author-label {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 3px;
+}
+
+/* SECTIONS */
+section { padding: 100px 40px; }
+
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.section-title span { color: var(--orange); }
+
+/* STORY */
+.story { background: var(--gray); }
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.story-text p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+.story-text p strong { color: var(--black); font-weight: 700; }
+.story-quote {
+  border-left: 4px solid var(--orange);
+  padding: 20px 28px;
+  background: var(--white);
+  margin-top: 32px;
+}
+.story-quote p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--black);
+  line-height: 1.6;
+  margin: 0 !important;
+}
+.story-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.fact-card {
+  background: var(--white);
+  padding: 28px 32px;
+  border-left: 4px solid var(--orange);
+}
+.fact-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.fact-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* BUCH */
+.buch { background: var(--white); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+.feature-card {
+  background: var(--black);
+  padding: 40px 32px;
+  transition: background 0.2s;
+}
+.feature-card:hover { background: var(--orange-dark); }
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.feature-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.feature-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+
+/* KAUFEN */
+.kaufen {
+  background: linear-gradient(160deg, var(--black) 0%, #1a0a00 100%);
+  text-align: center;
+}
+.kaufen .section-title { color: var(--white); }
+.kaufen .section-label { margin-bottom: 16px; }
+.kaufen-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 48px;
+}
+.kaufen-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 20px 48px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 20px 48px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+/* EMPFEHLUNGEN */
+.empfehlungen { background: var(--gray); }
+.emp-intro {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.8;
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+.emp-category { margin-bottom: 60px; }
+.emp-cat-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border-bottom: 1px solid rgba(245,124,0,0.2);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+.emp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.emp-card {
+  background: var(--white);
+  padding: 24px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+.emp-card:hover {
+  border-bottom-color: var(--orange);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.emp-card-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.emp-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.emp-card-arrow {
+  font-size: 18px;
+  color: var(--orange);
+}
+
+/* AUTOR */
+.autor { background: var(--white); }
+.autor-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.autor-avatar {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(160deg, var(--orange) 0%, var(--orange-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.autor-initials {
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.9);
+}
+.autor-name {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--black);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+.autor-role {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 28px;
+}
+.autor-bio p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.autor-bio p strong { color: var(--black); }
+.autor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.autor-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid rgba(245,124,0,0.3);
+  padding: 6px 14px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  padding: 60px 40px;
+  text-align: center;
+}
+.footer-logo {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.footer-text {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.8;
+}
+.footer-text a { color: rgba(245,124,0,0.6); text-decoration: none; }
+.footer-disclaimer {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  margin-top: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-content > * {
+  animation: fadeUp 0.6s ease forwards;
+  opacity: 0;
+}
+.hero-badge { animation-delay: 0.1s; }
+.hero-title { animation-delay: 0.2s; }
+.hero-subtitle { animation-delay: 0.3s; }
+.hero-stats { animation-delay: 0.4s; }
+.hero-cta { animation-delay: 0.5s; }
+.hero-cover { animation: fadeUp 0.8s 0.3s ease forwards; opacity: 0; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 80px 20px 40px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-title { font-size: 40px; }
+  section { padding: 60px 20px; }
+  .story-grid { grid-template-columns: 1fr; gap: 40px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .autor-grid { grid-template-columns: 1fr; gap: 32px; }
+  .kaufen-buttons { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Abnehmen zum letzten Mal</div>
+  <div class="nav-links">
+    <a href="#buch">Das Buch</a>
+    <a href="#kaufen">Jetzt kaufen</a>
+    <a href="#empfehlungen">Empfehlungen</a>
+    <a href="#autor">Autor</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Jetzt auf Amazon erhältlich</div>
+      <h1 class="hero-title">
+        Abnehmen
+        <span>zum</span>
+        <span class="orange">letzten Mal</span>
+      </h1>
+      <p class="hero-subtitle">Der ehrliche Ratgeber für Berufstätige und Eltern<br>Grundlagen · Meal Prep · 8-Wochen-Plan</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">−7kg</div>
+          <div class="stat-label">in 10 Wochen</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Meal-Prep-Rezepte</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">48g+</div>
+          <div class="stat-label">Protein / Portion</div>
+        </div>
+      </div>
+      <a href="#kaufen" class="hero-cta">Jetzt kaufen →</a>
+    </div>
+
+    <div class="hero-cover">
+      <div class="cover-mockup">
+        <div class="cover-tag">Ernährung · Meal Prep · Alltag</div>
+        <div class="cover-title-big">Abnehmen</div>
+        <div class="cover-title-mid">zum</div>
+        <div class="cover-title-bot">letzten Mal</div>
+        <div class="cover-subtitle-small">Der ehrliche Ratgeber<br>für Berufstätige und Eltern</div>
+        <div class="cover-badge">
+          <div class="cover-badge-num">−7 kg</div>
+          <div class="cover-badge-text">in 10 Wochen<br>ohne zu hungern<br>mit vollem Alltag</div>
+        </div>
+        <div class="cover-features">
+          <div class="cover-feature"><strong>8 Meal-Prep-Rezepte</strong> mit 48–57g Protein</div>
+          <div class="cover-feature"><strong>8-Wochen-Plan</strong> inkl. Einkaufslisten</div>
+          <div class="cover-feature"><strong>System statt Willenskraft</strong></div>
+        </div>
+        <div class="cover-author-label">Autor</div>
+        <div class="cover-author-small">David Rybka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-text">
+        <div class="section-label">Die Geschichte dahinter</div>
+        <h2 class="section-title">Ich dachte,<br>ich hätte es<br><span>schwerer</span></h2>
+        <p>Ich bin 45 Jahre alt, Familienvater, Vollzeit berufstätig im Rhein-Main-Gebiet. Ich dachte lange, Abnehmen ist etwas für Leute mit viel Zeit. Für Leute, die abends ins Fitnessstudio rennen und aufwändige Gerichte kochen können.</p>
+        <p>Dann kam der Moment, der alles verändert hat. Im Urlaub wollte mein Sohn mit mir aufs Trampolin. Das Maximalgewicht: 90 Kilo. Ich stieg auf die Waage — 90 Kilo, genau an der Grenze. Vor den Augen meines Sohnes.</p>
+        <p><strong>Ich hatte nie ein Disziplin-Problem. Ich hatte ein System-Problem.</strong></p>
+        <p>Dazu kam der Wunsch, gut im Anzug auszusehen, mich wohl zu fühlen — und meinen Kindern so lange wie möglich Paroli bieten zu können. Das hat mich angetrieben.</p>
+        <div class="story-quote">
+          <p>„Wenn ich es geschafft habe — mit vollem Alltag, wenig Zeit und null Lust auf Verzicht — dann kannst du das auch."</p>
+        </div>
+      </div>
+      <div class="story-facts">
+        <div class="fact-card">
+          <div class="fact-number">7 kg</div>
+          <div class="fact-text">verloren in 10 Wochen</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-number">0</div>
+          <div class="fact-text">Heißhungerattacken durch Protein & Ballaststoffe</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-number">90 min</div>
+          <div class="fact-text">Meal Prep am Sonntag — 4 Tage versorgt</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-number">48–57g</div>
+          <div class="fact-text">Protein pro Portion in jedem Rezept</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUCH -->
+<section class="buch" id="buch">
+  <div class="section-inner">
+    <div class="section-label">Das Buch</div>
+    <h2 class="section-title">Was dich <span>erwartet</span></h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Grundlagen verstehen</div>
+        <div class="feature-desc">Kaloriendefizit, Makronährstoffe, Protein — einfach erklärt ohne Fachjargon. Du verstehst warum frühere Versuche gescheitert sind.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🍱</div>
+        <div class="feature-title">8 Meal-Prep-Rezepte</div>
+        <div class="feature-desc">Einmal kochen, vier Tage satt. Alle Rezepte mit 48–57g Protein pro Portion, durchgerechnet und in Yazio nachvollziehbar.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">8-Wochen-Plan</div>
+        <div class="feature-desc">Komplett mit Einkaufslisten. Donnerstag planen, Freitag einkaufen, Sonntag vorkochen. Immer der gleiche Rhythmus.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏋️</div>
+        <div class="feature-title">Bewegung & Training</div>
+        <div class="feature-desc">Warum 10.000 Schritte mehr bringt als Joggen. Krafttraining für Einsteiger. Kein Gym-Abo nötig.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Dranbleiben & System</div>
+        <div class="feature-desc">Plateaus, Diet Breaks, emotionales Essen, Rückfälle. Alles was andere Bücher weglassen — ehrlich behandelt.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Tools & Tracking</div>
+        <div class="feature-desc">Yazio, Supplements, Ausstattung. Was ich selbst nutze und warum — ohne Wundermittel, ohne Versprechen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KAUFEN -->
+<section class="kaufen" id="kaufen">
+  <div class="section-inner">
+    <div class="section-label">Jetzt starten</div>
+    <h2 class="section-title" style="color:white;">Dein System.<br>Dein <span>Sommer.</span></h2>
+    <p class="kaufen-text">Bis zum Sommer sind es noch einige Wochen. Das reicht für einen echten, sichtbaren Unterschied. Einen, der bleibt.</p>
+        <p class="kaufen-text" style="margin-top:-20px;">Das Buch wird dir helfen, dein Wunschgewicht zu erreichen. Der Bonus: mehr Gesundheit, mehr Energie, mehr Selbstbewusstsein.</p>
+    <div class="kaufen-buttons">
+      <a href="AMAZON_BUCH_LINK_HIER" class="btn-primary" target="_blank">📚 Taschenbuch kaufen — 12,99€</a>
+      <a href="AMAZON_KINDLE_LINK_HIER" class="btn-secondary" target="_blank">📱 Kindle eBook — 5,99€</a>
+    </div>
+  </div>
+</section>
+
+<!-- EMPFEHLUNGEN -->
+<section class="empfehlungen" id="empfehlungen">
+  <div class="section-inner">
+    <div class="section-label">Meine Empfehlungen</div>
+    <h2 class="section-title">Was ich selbst <span>nutze</span></h2>
+    <p class="emp-intro">Diese Produkte nutze ich selbst oder empfehle ich aus Überzeugung. Alle Links sind Affiliate-Links — du zahlst nicht mehr, ich erhalte eine kleine Provision.</p>
+
+    <div class="emp-category">
+      <div class="emp-cat-title">🍳 Küche & Kochen</div>
+      <div class="emp-grid">
+        <a href="https://amzn.to/3QrpRno" class="emp-card" target="_blank">
+          <div class="emp-card-label">Unverzichtbar</div>
+          <div class="emp-card-title">Ölsprüher — spart 100–200 kcal pro Mahlzeit</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/4cp3Yh8" class="emp-card" target="_blank">
+          <div class="emp-card-label">Günstig</div>
+          <div class="emp-card-title">Airfryer klein — perfekt für 1–2 Personen</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/3QTA5wV" class="emp-card" target="_blank">
+          <div class="emp-card-label">Mittelklasse</div>
+          <div class="emp-card-title">Airfryer mittel — für die ganze Familie</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/4mMdqyP" class="emp-card" target="_blank">
+          <div class="emp-card-label">Premium</div>
+          <div class="emp-card-title">Airfryer groß — 2 Kammern gleichzeitig</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/4eAS98Y" class="emp-card" target="_blank">
+          <div class="emp-card-label">Pflicht</div>
+          <div class="emp-card-title">Küchenwaage digital — für genaues Tracking</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="emp-category">
+      <div class="emp-cat-title">⚖️ Tracking & Messen</div>
+      <div class="emp-grid">
+        <a href="https://amzn.to/4cJOBid" class="emp-card" target="_blank">
+          <div class="emp-card-label">Empfohlen</div>
+          <div class="emp-card-title">Körperwaage mit App — Körperfett, BMI & mehr</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="emp-category">
+      <div class="emp-cat-title">⌚ Schrittzähler & Uhren</div>
+      <div class="emp-grid">
+        <a href="https://amzn.to/4tB6GWX" class="emp-card" target="_blank">
+          <div class="emp-card-label">Günstig ~35€</div>
+          <div class="emp-card-title">Xiaomi Smart Band 10 — 8.000+ Bewertungen</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/493VeuC" class="emp-card" target="_blank">
+          <div class="emp-card-label">Mittelklasse</div>
+          <div class="emp-card-title">Fitnessuhr mit GPS — präzises Tracking</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/3ODDMGj" class="emp-card" target="_blank">
+          <div class="emp-card-label">Premium ~139€</div>
+          <div class="emp-card-title">Garmin Forerunner 55 — 11.000+ Bewertungen</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="emp-category">
+      <div class="emp-cat-title">🏋️ Training & Fitness</div>
+      <div class="emp-grid">
+        <a href="https://amzn.to/3Qq7gYX" class="emp-card" target="_blank">
+          <div class="emp-card-label">Bestseller</div>
+          <div class="emp-card-title">Kurzhanteln verstellbar — für zuhause</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/4cpDcFt" class="emp-card" target="_blank">
+          <div class="emp-card-label">Empfohlen</div>
+          <div class="emp-card-title">Gewichtsweste bis 30 kg — NEAT steigern</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+        <a href="https://amzn.to/3QUvGtC" class="emp-card" target="_blank">
+          <div class="emp-card-label">Kein Bohren</div>
+          <div class="emp-card-title">Klimmzugstange Tür — ohne Schrauben</div>
+          <div class="emp-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOR -->
+<section class="autor" id="autor">
+  <div class="section-inner">
+    <div class="autor-grid">
+
+      <div class="autor-bio">
+        <div class="section-label">Der Autor</div>
+        <div class="autor-name">David Rybka</div>
+        <div class="autor-role">Autor · Familienvater · Berufstätiger</div>
+        <p>Ich bin 45 Jahre alt, lebe im Rhein-Main-Gebiet und arbeite Vollzeit. Kein Ernährungsberater, kein Fitness-Coach — sondern jemand, der es selbst gemacht hat.</p>
+        <p>Der Moment auf dem Trampolin, als ich 90 Kilo wog und mein Sohn zugeschaut hat — das war der Wendepunkt. Dazu kam der Wunsch, gut im Anzug auszusehen, mich wohl zu fühlen und meinen Kindern lange Paroli bieten zu können.</p>
+        <p><strong>Sieben Kilo in zehn Wochen. Ohne zu hungern. Ohne mein Leben umzukrempeln.</strong> Bestehende Methoden, die funktionieren — zusammengeführt und in meinen Alltag gebracht. Genau das ist dieses Buch.</p>
+        <div class="autor-tags">
+          <span class="autor-tag">Familienvater</span>
+          <span class="autor-tag">Vollzeit berufstätig</span>
+          <span class="autor-tag">−7 kg in 10 Wochen</span>
+          <span class="autor-tag">Rhein-Main-Gebiet</span>
+          <span class="autor-tag">Meal Prep</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Abnehmen zum letzten Mal</div>
+  <div class="footer-text">
+    © 2026 David Rybka · <a href="#">Impressum</a> · <a href="#">Datenschutz</a>
+  </div>
+  <div class="footer-disclaimer">
+    * Affiliate-Hinweis: Diese Seite enthält Affiliate-Links zu Amazon. Als Amazon-Partner verdiene ich an qualifizierten Käufen. Für dich entstehen keine zusätzlichen Kosten.
+  </div>
+</footer>
+
+</body>
+</html>
