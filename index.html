@@ -616,18 +616,65 @@ footer {
 .hero-cta { animation-delay: 0.5s; }
 .hero-cover { animation: fadeUp 0.8s 0.3s ease forwards; opacity: 0; }
 
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
 /* MOBILE */
 @media (max-width: 768px) {
-  nav { padding: 16px 20px; }
-  .nav-links { display: none; }
+  nav { padding: 14px 20px; }
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 0;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    padding: 14px 24px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
   .hero { padding: 80px 20px 40px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-title { font-size: 40px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-title { font-size: 38px; }
+  .hero-cover { order: -1; }
+  .cover-mockup { max-width: 280px; padding: 32px 28px; }
+  .cover-title-big { font-size: 38px; }
+  .cover-title-bot { font-size: 28px; }
+  .cover-badge-num { font-size: 28px; }
+  .hero-stats { gap: 20px; }
+  .stat-number { font-size: 28px; }
   section { padding: 60px 20px; }
+  .section-title { font-size: 32px; }
   .story-grid { grid-template-columns: 1fr; gap: 40px; }
   .features-grid { grid-template-columns: 1fr; }
   .autor-grid { grid-template-columns: 1fr; gap: 32px; }
   .kaufen-buttons { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; padding: 18px 24px; }
+  .emp-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -635,12 +682,15 @@ footer {
 
 <nav>
   <div class="nav-logo">Abnehmen zum letzten Mal</div>
-  <div class="nav-links">
-    <a href="#buch">Das Buch</a>
-    <a href="#kaufen">Jetzt kaufen</a>
-    <a href="#empfehlungen">Empfehlungen</a>
-    <a href="#autor">Autor</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#buch" onclick="closeMenu()">Das Buch</a>
+    <a href="#kaufen" onclick="closeMenu()">Jetzt kaufen</a>
+    <a href="#empfehlungen" onclick="closeMenu()">Empfehlungen</a>
+    <a href="#autor" onclick="closeMenu()">Autor</a>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -779,8 +829,8 @@ footer {
     <p class="kaufen-text">Bis zum Sommer sind es noch einige Wochen. Das reicht für einen echten, sichtbaren Unterschied. Einen, der bleibt.</p>
         <p class="kaufen-text" style="margin-top:-20px;">Das Buch wird dir helfen, dein Wunschgewicht zu erreichen. Der Bonus: mehr Gesundheit, mehr Energie, mehr Selbstbewusstsein.</p>
     <div class="kaufen-buttons">
-      <a href="AMAZON_BUCH_LINK_HIER" class="btn-primary" target="_blank">📚 Taschenbuch kaufen — 12,99€</a>
-      <a href="AMAZON_KINDLE_LINK_HIER" class="btn-secondary" target="_blank">📱 Kindle eBook — 5,99€</a>
+      <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenfit0b-21" class="btn-primary" target="_blank">📚 Taschenbuch kaufen — 12,99€</a>
+      <a href="https://www.amazon.de/dp/B0GYBBS7TX?tag=abnehmenfit0b-21" class="btn-secondary" target="_blank">📱 Kindle eBook — 5,99€</a>
     </div>
   </div>
 </section>
@@ -913,5 +963,17 @@ footer {
   </div>
 </footer>
 
+<script>
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+</script>
 </body>
 </html>
