@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalorienbedarf berechnen – Abnehmen zum letzten Mal</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #1a1a1a;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+  label {
+    font-size: 13px;
+    color: #555;
+    display: block;
+    margin-bottom: 6px;
+  }
+  select, input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1a1a1a;
+    background: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  select:focus, input[type="number"]:focus { outline: none; border-color: #F57C00; }
+  .activity-wrap { margin-bottom: 1.25rem; }
+  .deficit-wrap { margin-bottom: 1.5rem; }
+  .deficit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .deficit-value { font-size: 15px; font-weight: 600; color: #F57C00; }
+  input[type="range"] {
+    width: 100%;
+    accent-color: #F57C00;
+    height: 4px;
+    cursor: pointer;
+  }
+  .range-labels { display: flex; justify-content: space-between; margin-top: 4px; }
+  .range-labels span { font-size: 11px; color: #aaa; }
+  .warning {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+    font-weight: 500;
+  }
+  .warning.orange { background: #FFF3E0; color: #E65100; display: block; }
+  .warning.red { background: #FFEBEE; color: #B71C1C; display: block; }
+  .divider { border: none; border-top: 1px solid #eee; margin: 1.5rem 0; }
+  .section-label { font-size: 13px; color: #666; margin-bottom: 12px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+  .card {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 1rem;
+    transition: background 0.2s;
+  }
+  .card.green { background: #E8F5E9; }
+  .card.orange { background: #FFF3E0; }
+  .card.red { background: #FFEBEE; }
+  .card-label { font-size: 12px; color: #777; margin-bottom: 4px; }
+  .card.green .card-label { color: #2E7D32; }
+  .card.orange .card-label { color: #E65100; }
+  .card.red .card-label { color: #B71C1C; }
+  .card-value { font-size: 26px; font-weight: 600; color: #1a1a1a; }
+  .card.green .card-value { color: #1B5E20; }
+  .card.orange .card-value { color: #E65100; }
+  .card.red .card-value { color: #B71C1C; }
+  .card-unit { font-size: 11px; color: #aaa; margin-top: 4px; }
+  .card.green .card-unit { color: #388E3C; }
+  .card.orange .card-unit { color: #F57C00; }
+  .card.red .card-unit { color: #E53935; }
+  .footer-note { font-size: 12px; color: #aaa; margin-top: 1rem; }
+  .branding { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 13px; color: #aaa; text-align: center; }
+  .branding a { color: #F57C00; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>Kalorienbedarf berechnen</h1>
+  <p class="subtitle">Berechne deinen täglichen Kalorienbedarf mit zwei anerkannten Formeln und finde dein optimales Defizit zum Abnehmen.</p>
+
+  <div class="grid-4">
+    <div>
+      <label for="gender">Geschlecht</label>
+      <select id="gender">
+        <option value="male">Männlich</option>
+        <option value="female">Weiblich</option>
+      </select>
+    </div>
+    <div>
+      <label for="age">Alter (Jahre)</label>
+      <input type="number" id="age" value="35" min="15" max="90" />
+    </div>
+    <div>
+      <label for="weight">Gewicht (kg)</label>
+      <input type="number" id="weight" value="85" min="40" max="250" />
+    </div>
+    <div>
+      <label for="height">Größe (cm)</label>
+      <input type="number" id="height" value="178" min="140" max="220" />
+    </div>
+  </div>
+
+  <div class="activity-wrap">
+    <label for="activity">Aktivitätslevel</label>
+    <select id="activity">
+      <option value="1.2">Kaum Bewegung (Schreibtischjob, kein Sport)</option>
+      <option value="1.375">Leicht aktiv (1–3x Sport pro Woche)</option>
+      <option value="1.55" selected>Moderat aktiv (3–5x Sport pro Woche)</option>
+      <option value="1.725">Sehr aktiv (6–7x Sport pro Woche)</option>
+      <option value="1.9">Extrem aktiv (Schwerarbeit + täglicher Sport)</option>
+    </select>
+  </div>
+
+  <div class="deficit-wrap">
+    <div class="deficit-header">
+      <label for="deficit" style="margin:0;">Kaloriendefizit</label>
+      <span class="deficit-value" id="deficit-label">−500 kcal</span>
+    </div>
+    <input type="range" id="deficit" min="100" max="1000" step="50" value="500" />
+    <div class="range-labels"><span>−100</span><span>−1000 kcal</span></div>
+    <div class="warning" id="warning"></div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">Grundumsatz (BMR)</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Harris-Benedict</div>
+      <div class="card-value" id="hb-bmr">—</div>
+      <div class="card-unit">kcal/Tag</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Mifflin-St-Jeor</div>
+      <div class="card-value" id="msj-bmr">—</div>
+      <div class="card-unit">kcal/Tag</div>
+    </div>
+  </div>
+
+  <p class="section-label">Gesamtbedarf (mit Aktivität)</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Harris-Benedict</div>
+      <div class="card-value" id="hb-tdee">—</div>
+      <div class="card-unit">kcal/Tag</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Mifflin-St-Jeor</div>
+      <div class="card-value" id="msj-tdee">—</div>
+      <div class="card-unit">kcal/Tag</div>
+    </div>
+  </div>
+
+  <p class="section-label">Kalorienziel zum Abnehmen</p>
+  <div class="grid-2">
+    <div class="card green" id="hb-def-card">
+      <div class="card-label" id="hb-def-label">Harris-Benedict</div>
+      <div class="card-value" id="hb-def">—</div>
+      <div class="card-unit">kcal/Tag Ziel</div>
+    </div>
+    <div class="card green" id="msj-def-card">
+      <div class="card-label" id="msj-def-label">Mifflin-St-Jeor</div>
+      <div class="card-value" id="msj-def">—</div>
+      <div class="card-unit">kcal/Tag Ziel</div>
+    </div>
+  </div>
+
+  <p class="footer-note">Beide Formeln liefern Schätzwerte. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab und passe es an.</p>
+
+  <div class="branding">
+    Aus dem Buch <a href="https://amazon.de/dp/B0GYBB4RN8" target="_blank">„Abnehmen zum letzten Mal"</a> von David Rybka
+  </div>
+</div>
+
+<script>
+function calc() {
+  var g = document.getElementById('gender').value;
+  var age = parseFloat(document.getElementById('age').value);
+  var w = parseFloat(document.getElementById('weight').value);
+  var h = parseFloat(document.getElementById('height').value);
+  var act = parseFloat(document.getElementById('activity').value);
+  var def = parseInt(document.getElementById('deficit').value);
+
+  document.getElementById('deficit-label').textContent = '−' + def + ' kcal';
+
+  if (!age || !w || !h) return;
+
+  var hb, msj;
+  if (g === 'male') {
+    hb = 88.4 + (13.4 * w) + (4.8 * h) - (5.7 * age);
+    msj = (10 * w) + (6.25 * h) - (5 * age) + 5;
+  } else {
+    hb = 447.6 + (9.2 * w) + (3.1 * h) - (4.3 * age);
+    msj = (10 * w) + (6.25 * h) - (5 * age) - 161;
+  }
+
+  document.getElementById('hb-bmr').textContent = Math.round(hb);
+  document.getElementById('msj-bmr').textContent = Math.round(msj);
+  document.getElementById('hb-tdee').textContent = Math.round(hb * act);
+  document.getElementById('msj-tdee').textContent = Math.round(msj * act);
+  document.getElementById('hb-def').textContent = Math.round(hb * act - def);
+  document.getElementById('msj-def').textContent = Math.round(msj * act - def);
+
+  var warn = document.getElementById('warning');
+  var hbCard = document.getElementById('hb-def-card');
+  var msjCard = document.getElementById('msj-def-card');
+
+  if (def <= 500) {
+    warn.className = 'warning';
+    warn.textContent = '';
+    hbCard.className = 'card green';
+    msjCard.className = 'card green';
+  } else if (def <= 699) {
+    warn.className = 'warning orange';
+    warn.textContent = 'Nicht empfehlenswert — hohes Risiko für Jo-Jo-Effekt und Muskelverlust.';
+    hbCard.className = 'card orange';
+    msjCard.className = 'card orange';
+  } else {
+    warn.className = 'warning red';
+    warn.textContent = 'Zu aggressiv — Muskelverlust, Stoffwechsel fährt runter, Jo-Jo-Effekt vorprogrammiert.';
+    hbCard.className = 'card red';
+    msjCard.className = 'card red';
+  }
+}
+
+['gender','age','weight','height','activity','deficit'].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', calc);
+});
+calc();
+</script>
+</body>
+</html>
