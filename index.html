@@ -686,7 +686,7 @@ footer {
     <a href="#buch" onclick="closeMenu()">Das Buch</a>
     <a href="#kaufen" onclick="closeMenu()">Jetzt kaufen</a>
     <a href="#empfehlungen" onclick="closeMenu()">Empfehlungen</a>
-    <a href="#rechner" onclick="closeMenu()">Rechner</a>
+    <a href="#rechner" onclick="closeMenu()">Kalorienrechner</a>
     <a href="#autor" onclick="closeMenu()">Autor</a>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
@@ -751,13 +751,13 @@ footer {
     <div class="story-grid">
       <div class="story-text">
         <div class="section-label">Die Geschichte dahinter</div>
-        <h2 class="section-title">Ich dachte,<br>ich hätte es<br><span>schwerer</span></h2>
+        <h2 class="section-title">Jahrelang dachte ich:<br><span>Abnehmen funktioniert</span><br>bei mir nicht</h2>
         <p>Ich bin 45 Jahre alt, Familienvater, Vollzeit berufstätig im Rhein-Main-Gebiet. Ich dachte lange, Abnehmen ist etwas für Leute mit viel Zeit. Für Leute, die abends ins Fitnessstudio rennen und aufwändige Gerichte kochen können.</p>
-        <p>Dann kam der Moment, der alles verändert hat. Im Urlaub wollte mein Sohn mit mir aufs Trampolin. Das Maximalgewicht: 90 Kilo. Ich stieg auf die Waage — 90 Kilo, genau an der Grenze. Vor den Augen meines Sohnes.</p>
+        <p>Dann kam der Moment, der alles verändert hat. Im Urlaub wollte mein Sohn mit mir aufs Trampolin. Das Maximalgewicht: 90 Kilo. Ich stieg auf die Waage, 90 Kilo, genau an der Grenze. Vor den Augen meines Sohnes.</p>
         <p><strong>Ich hatte nie ein Disziplin-Problem. Ich hatte ein System-Problem.</strong></p>
-        <p>Dazu kam der Wunsch, gut im Anzug auszusehen, mich wohl zu fühlen — und meinen Kindern so lange wie möglich Paroli bieten zu können. Das hat mich angetrieben.</p>
+        <p>Dazu kam der Wunsch, gut im Anzug auszusehen, mich wohl zu fühlen und meinen Kindern so lange wie möglich Paroli bieten zu können. Das hat mich angetrieben.</p>
         <div class="story-quote">
-          <p>„Wenn ich es geschafft habe — mit vollem Alltag, wenig Zeit und null Lust auf Verzicht — dann kannst du das auch."</p>
+          <p>„Wenn ich es geschafft habe, mit vollem Alltag, wenig Zeit und ohne einen einzigen Verzichtstag, dann kannst du das auch."</p>
         </div>
       </div>
       <div class="story-facts">
@@ -771,7 +771,7 @@ footer {
         </div>
         <div class="fact-card">
           <div class="fact-number">90 min</div>
-          <div class="fact-text">Meal Prep am Sonntag — 4 Tage versorgt</div>
+          <div class="fact-text">Meal Prep am Sonntag · 4 Tage versorgt</div>
         </div>
         <div class="fact-card">
           <div class="fact-number">48–57g</div>
@@ -791,7 +791,7 @@ footer {
       <div class="feature-card">
         <div class="feature-icon">📊</div>
         <div class="feature-title">Grundlagen verstehen</div>
-        <div class="feature-desc">Kaloriendefizit, Makronährstoffe, Protein — einfach erklärt ohne Fachjargon. Du verstehst warum frühere Versuche gescheitert sind.</div>
+        <div class="feature-desc">Kaloriendefizit, Makronährstoffe, Protein · einfach erklärt ohne Fachjargon. Du verstehst warum frühere Versuche gescheitert sind.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🍱</div>
@@ -811,54 +811,56 @@ footer {
       <div class="feature-card">
         <div class="feature-icon">🧠</div>
         <div class="feature-title">Dranbleiben & System</div>
-        <div class="feature-desc">Plateaus, Diet Breaks, emotionales Essen, Rückfälle. Alles was andere Bücher weglassen — ehrlich behandelt.</div>
+        <div class="feature-desc">Plateaus, Diet Breaks, emotionales Essen, Rückfälle. Alles was andere Bücher weglassen · ehrlich behandelt.</div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🎯</div>
         <div class="feature-title">Tools & Tracking</div>
-        <div class="feature-desc">Yazio, Supplements, Ausstattung. Was ich selbst nutze und warum — ohne Wundermittel, ohne Versprechen.</div>
+        <div class="feature-desc">Yazio, Supplements, Ausstattung. Was ich selbst nutze und warum · ohne Wundermittel, ohne Versprechen.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- RECHNER -->
-<section style="background:#f5f5f5;padding:80px 40px;" id="rechner">
+<section style="background:#f5f5f5;padding:80px 20px;" id="rechner">
   <div class="section-inner">
-    <div class="section-label">Kostenloser Tool</div>
+    <div class="section-label">Kostenloses Tool</div>
     <h2 class="section-title">Dein <span>Kalorienbedarf</span><br>in 2 Minuten</h2>
-    <p style="text-align:center;max-width:560px;margin:0 auto 40px;color:#555;font-size:15px;line-height:1.7;">Berechne deinen persönlichen Kalorienbedarf mit zwei anerkannten Formeln — und finde dein optimales Defizit zum Abnehmen.</p>
-    <div style="background:#fff;border-radius:16px;padding:2rem;max-width:680px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.25rem;">
-        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Geschlecht</label><select id="r-gender" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;"><option value="male">Männlich</option><option value="female">Weiblich</option></select></div>
-        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Alter (Jahre)</label><input type="number" id="r-age" value="35" min="15" max="90" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;" /></div>
-        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Gewicht (kg)</label><input type="number" id="r-weight" value="85" min="40" max="250" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;" /></div>
-        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Größe (cm)</label><input type="number" id="r-height" value="178" min="140" max="220" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;" /></div>
+    <p style="text-align:center;max-width:560px;margin:0 auto 40px;color:#555;font-size:15px;line-height:1.7;">Berechne deinen persönlichen Kalorienbedarf mit der genauesten wissenschaftlichen Methode und finde dein optimales Defizit zum Abnehmen.</p>
+    <div style="background:#fff;border-radius:16px;padding:1.5rem;max-width:680px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.25rem;">
+        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Geschlecht</label><select id="r-gender" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;"><option value="male">Männlich</option><option value="female">Weiblich</option></select></div>
+        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Alter (Jahre)</label><input type="number" id="r-age" value="35" min="15" max="90" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;" /></div>
+        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Gewicht (kg)</label><input type="number" id="r-weight" value="85" min="40" max="250" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;" /></div>
+        <div><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Größe (cm)</label><input type="number" id="r-height" value="178" min="140" max="220" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;" /></div>
       </div>
-      <div style="margin-bottom:1.25rem;"><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Aktivitätslevel</label><select id="r-activity" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;"><option value="1.2">Kaum Bewegung (Schreibtischjob, kein Sport)</option><option value="1.375">Leicht aktiv (1–3x Sport pro Woche)</option><option value="1.55" selected>Moderat aktiv (3–5x Sport pro Woche)</option><option value="1.725">Sehr aktiv (6–7x Sport pro Woche)</option><option value="1.9">Extrem aktiv (Schwerarbeit + täglicher Sport)</option></select></div>
+      <div style="margin-bottom:1.25rem;"><label style="font-size:13px;color:#555;display:block;margin-bottom:6px;">Aktivitätslevel</label><select id="r-activity" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Montserrat',sans-serif;"><option value="1.2">Kaum Bewegung (Schreibtischjob, kein Sport)</option><option value="1.375">Leicht aktiv (1–3x Sport pro Woche)</option><option value="1.55" selected>Moderat aktiv (3–5x Sport pro Woche)</option><option value="1.725">Sehr aktiv (6–7x Sport pro Woche)</option><option value="1.9">Extrem aktiv (Schwerarbeit + täglicher Sport)</option></select></div>
       <div style="margin-bottom:1.5rem;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><label style="font-size:13px;color:#555;">Kaloriendefizit</label><span style="font-size:15px;font-weight:700;color:#F57C00;" id="r-deficit-label">−500 kcal</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><label style="font-size:13px;color:#555;">Kaloriendefizit</label><span style="font-size:15px;font-weight:700;color:#F57C00;" id="r-deficit-label">500 kcal</span></div>
         <input type="range" id="r-deficit" min="100" max="1000" step="50" value="500" style="width:100%;accent-color:#F57C00;" />
-        <div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:11px;color:#aaa;">−100</span><span style="font-size:11px;color:#aaa;">−1000 kcal</span></div>
+        <div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:11px;color:#aaa;">100</span><span style="font-size:11px;color:#aaa;">1000 kcal</span></div>
         <div id="r-warning" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;"></div>
       </div>
       <div style="border-top:1px solid #eee;padding-top:1.5rem;">
-        <p style="font-size:13px;color:#555;margin-bottom:12px;">Grundumsatz (BMR)</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
-          <div style="background:#f5f5f5;border-radius:10px;padding:1rem;"><p style="font-size:12px;color:#777;margin-bottom:4px;">Harris-Benedict</p><p style="font-size:24px;font-weight:700;color:#1a1a1a;font-family:'Montserrat',sans-serif;" id="r-hb-bmr">—</p><p style="font-size:11px;color:#aaa;">kcal/Tag</p></div>
-          <div style="background:#f5f5f5;border-radius:10px;padding:1rem;"><p style="font-size:12px;color:#777;margin-bottom:4px;">Mifflin-St-Jeor</p><p style="font-size:24px;font-weight:700;color:#1a1a1a;font-family:'Montserrat',sans-serif;" id="r-msj-bmr">—</p><p style="font-size:11px;color:#aaa;">kcal/Tag</p></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:1rem;">
+          <div style="background:#f5f5f5;border-radius:10px;padding:1rem;">
+            <p style="font-size:12px;color:#777;margin-bottom:4px;">Grundumsatz (BMR)</p>
+            <p style="font-size:26px;font-weight:700;color:#1a1a1a;font-family:'Montserrat',sans-serif;" id="r-bmr">—</p>
+            <p style="font-size:11px;color:#aaa;">kcal/Tag</p>
+          </div>
+          <div style="background:#f5f5f5;border-radius:10px;padding:1rem;">
+            <p style="font-size:12px;color:#777;margin-bottom:4px;">Gesamtbedarf (mit Aktivität)</p>
+            <p style="font-size:26px;font-weight:700;color:#1a1a1a;font-family:'Montserrat',sans-serif;" id="r-tdee">—</p>
+            <p style="font-size:11px;color:#aaa;">kcal/Tag</p>
+          </div>
         </div>
-        <p style="font-size:13px;color:#555;margin-bottom:12px;">Gesamtbedarf (mit Aktivität)</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
-          <div style="background:#f5f5f5;border-radius:10px;padding:1rem;"><p style="font-size:12px;color:#777;margin-bottom:4px;">Harris-Benedict</p><p style="font-size:26px;font-weight:700;color:#1a1a1a;font-family:'Montserrat',sans-serif;" id="r-hb-tdee">—</p><p style="font-size:11px;color:#aaa;">kcal/Tag</p></div>
-          <div style="background:#f5f5f5;border-radius:10px;padding:1rem;"><p style="font-size:12px;color:#777;margin-bottom:4px;">Mifflin-St-Jeor</p><p style="font-size:26px;font-weight:700;color:#1a1a1a;font-family:'Montserrat',sans-serif;" id="r-msj-tdee">—</p><p style="font-size:11px;color:#aaa;">kcal/Tag</p></div>
+        <div id="r-def-card" style="background:#E8F5E9;border-radius:10px;padding:1rem;text-align:center;">
+          <p style="font-size:13px;color:#2E7D32;margin-bottom:6px;">Dein Kalorienziel zum Abnehmen</p>
+          <p style="font-size:36px;font-weight:800;color:#1B5E20;font-family:'Montserrat',sans-serif;" id="r-def">—</p>
+          <p style="font-size:12px;color:#388E3C;">kcal pro Tag</p>
         </div>
-        <p style="font-size:13px;color:#555;margin-bottom:12px;">Kalorienziel zum Abnehmen</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div id="r-hb-card" style="background:#E8F5E9;border-radius:10px;padding:1rem;"><p style="font-size:12px;color:#2E7D32;margin-bottom:4px;">Harris-Benedict</p><p style="font-size:26px;font-weight:700;color:#1B5E20;font-family:'Montserrat',sans-serif;" id="r-hb-def">—</p><p style="font-size:11px;color:#388E3C;">kcal/Tag Ziel</p></div>
-          <div id="r-msj-card" style="background:#E8F5E9;border-radius:10px;padding:1rem;"><p style="font-size:12px;color:#2E7D32;margin-bottom:4px;">Mifflin-St-Jeor</p><p style="font-size:26px;font-weight:700;color:#1B5E20;font-family:'Montserrat',sans-serif;" id="r-msj-def">—</p><p style="font-size:11px;color:#388E3C;">kcal/Tag Ziel</p></div>
-        </div>
-        <p style="font-size:12px;color:#aaa;margin-top:1rem;">Beide Formeln liefern Schätzwerte. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab.</p>
+        <p style="font-size:12px;color:#aaa;margin-top:1rem;line-height:1.6;">Schätzwert auf Basis der <strong style="color:#555;">Mifflin-St-Jeor-Formel</strong> (1990), heute der wissenschaftliche Standard, empfohlen von Ernährungsgesellschaften weltweit. Die ältere Harris-Benedict-Formel (1919) gilt als überholt und schätzt den Bedarf oft zu hoch. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab.</p>
       </div>
     </div>
   </div>
@@ -873,23 +875,19 @@ footer {
     var h=parseFloat(document.getElementById('r-height').value);
     var act=parseFloat(document.getElementById('r-activity').value);
     var def=parseInt(document.getElementById('r-deficit').value);
-    document.getElementById('r-deficit-label').textContent='−'+def+' kcal';
+    document.getElementById('r-deficit-label').textContent=def+' kcal';
     if(!age||!w||!h)return;
-    var hb,msj;
-    if(g==='male'){hb=88.4+(13.4*w)+(4.8*h)-(5.7*age);msj=(10*w)+(6.25*h)-(5*age)+5;}
-    else{hb=447.6+(9.2*w)+(3.1*h)-(4.3*age);msj=(10*w)+(6.25*h)-(5*age)-161;}
-    document.getElementById('r-hb-bmr').textContent=Math.round(hb);
-    document.getElementById('r-msj-bmr').textContent=Math.round(msj);
-    document.getElementById('r-hb-tdee').textContent=Math.round(hb*act);
-    document.getElementById('r-msj-tdee').textContent=Math.round(msj*act);
-    document.getElementById('r-hb-def').textContent=Math.round(hb*act-def);
-    document.getElementById('r-msj-def').textContent=Math.round(msj*act-def);
+    var msj;
+    if(g==='male'){msj=(10*w)+(6.25*h)-(5*age)+5;}
+    else{msj=(10*w)+(6.25*h)-(5*age)-161;}
+    document.getElementById('r-bmr').textContent=Math.round(msj);
+    document.getElementById('r-tdee').textContent=Math.round(msj*act);
+    document.getElementById('r-def').textContent=Math.round(msj*act-def);
     var warn=document.getElementById('r-warning');
-    var hbC=document.getElementById('r-hb-card');
-    var msjC=document.getElementById('r-msj-card');
-    if(def<=500){warn.style.display='none';hbC.style.background='#E8F5E9';msjC.style.background='#E8F5E9';}
-    else if(def<=699){warn.style.display='block';warn.style.background='#FFF3E0';warn.style.color='#E65100';warn.textContent='Nicht empfehlenswert — hohes Risiko für Jo-Jo-Effekt und Muskelverlust.';hbC.style.background='#FFF3E0';msjC.style.background='#FFF3E0';}
-    else{warn.style.display='block';warn.style.background='#FFEBEE';warn.style.color='#B71C1C';warn.textContent='Zu aggressiv — Muskelverlust, Stoffwechsel fährt runter, Jo-Jo-Effekt vorprogrammiert.';hbC.style.background='#FFEBEE';msjC.style.background='#FFEBEE';}
+    var card=document.getElementById('r-def-card');
+    if(def<=500){warn.style.display='none';card.style.background='#E8F5E9';document.getElementById('r-def').style.color='#1B5E20';}
+    else if(def<=699){warn.style.display='block';warn.style.background='#FFF3E0';warn.style.color='#E65100';warn.textContent='Nicht empfehlenswert: hohes Risiko für Jo-Jo-Effekt und Muskelverlust.';card.style.background='#FFF3E0';document.getElementById('r-def').style.color='#E65100';}
+    else{warn.style.display='block';warn.style.background='#FFEBEE';warn.style.color='#B71C1C';warn.textContent='Zu aggressiv: Muskelverlust, Stoffwechsel fährt runter, Jo-Jo-Effekt vorprogrammiert.';card.style.background='#FFEBEE';document.getElementById('r-def').style.color='#B71C1C';}
   }
   ['r-gender','r-age','r-weight','r-height','r-activity','r-deficit'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
   calc();
@@ -902,10 +900,10 @@ footer {
     <div class="section-label">Jetzt starten</div>
     <h2 class="section-title" style="color:white;">Dein System.<br>Dein <span>Sommer.</span></h2>
     <p class="kaufen-text">Bis zum Sommer sind es noch einige Wochen. Das reicht für einen echten, sichtbaren Unterschied. Einen, der bleibt.</p>
-        <p class="kaufen-text" style="margin-top:-20px;">Das Buch wird dir helfen, dein Wunschgewicht zu erreichen. Der Bonus: mehr Gesundheit, mehr Energie, mehr Selbstbewusstsein.</p>
+        <p class="kaufen-text" style="margin-top:-20px;">Das Buch hilft dir, dein Wunschgewicht zu erreichen. Der Bonus: mehr Energie im Alltag, bessere Gesundheit und das gute Gefühl, dich wieder wohlzufühlen.</p>
     <div class="kaufen-buttons">
-      <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenfit0b-21" class="btn-primary" target="_blank">📚 Taschenbuch kaufen — 12,99€</a>
-      <a href="https://www.amazon.de/dp/B0GYBBS7TX?tag=abnehmenfit0b-21" class="btn-secondary" target="_blank">📱 Kindle eBook — 5,99€</a>
+      <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenfit0b-21" class="btn-primary" target="_blank">📚 Taschenbuch kaufen · 12,99€</a>
+      <a href="https://www.amazon.de/dp/B0GYBBS7TX?tag=abnehmenfit0b-21" class="btn-secondary" target="_blank">📱 Kindle eBook · 5,99€</a>
     </div>
   </div>
 </section>
@@ -915,34 +913,34 @@ footer {
   <div class="section-inner">
     <div class="section-label">Meine Empfehlungen</div>
     <h2 class="section-title">Was ich selbst <span>nutze</span></h2>
-    <p class="emp-intro">Diese Produkte nutze ich selbst oder empfehle ich aus Überzeugung. Alle Links sind Affiliate-Links — du zahlst nicht mehr, ich erhalte eine kleine Provision.</p>
+    <p class="emp-intro">Diese Produkte nutze ich selbst oder empfehle ich aus Überzeugung. Alle Links sind Affiliate-Links, du zahlst nicht mehr, ich erhalte eine kleine Provision.</p>
 
     <div class="emp-category">
       <div class="emp-cat-title">🍳 Küche & Kochen</div>
       <div class="emp-grid">
         <a href="https://amzn.to/3QrpRno" class="emp-card" target="_blank">
           <div class="emp-card-label">Unverzichtbar</div>
-          <div class="emp-card-title">Ölsprüher — spart 100–200 kcal pro Mahlzeit</div>
+          <div class="emp-card-title">Ölsprüher · spart 100–200 kcal pro Mahlzeit</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/4cp3Yh8" class="emp-card" target="_blank">
           <div class="emp-card-label">Günstig</div>
-          <div class="emp-card-title">Airfryer klein — perfekt für 1–2 Personen</div>
+          <div class="emp-card-title">Airfryer klein · perfekt für 1–2 Personen</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/3QTA5wV" class="emp-card" target="_blank">
           <div class="emp-card-label">Mittelklasse</div>
-          <div class="emp-card-title">Airfryer mittel — für die ganze Familie</div>
+          <div class="emp-card-title">Airfryer mittel · für die ganze Familie</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/4mMdqyP" class="emp-card" target="_blank">
           <div class="emp-card-label">Premium</div>
-          <div class="emp-card-title">Airfryer groß — 2 Kammern gleichzeitig</div>
+          <div class="emp-card-title">Airfryer groß · 2 Kammern gleichzeitig</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/4eAS98Y" class="emp-card" target="_blank">
           <div class="emp-card-label">Pflicht</div>
-          <div class="emp-card-title">Küchenwaage digital — für genaues Tracking</div>
+          <div class="emp-card-title">Küchenwaage digital · für genaues Tracking</div>
           <div class="emp-card-arrow">→</div>
         </a>
       </div>
@@ -953,7 +951,7 @@ footer {
       <div class="emp-grid">
         <a href="https://amzn.to/4cJOBid" class="emp-card" target="_blank">
           <div class="emp-card-label">Empfohlen</div>
-          <div class="emp-card-title">Körperwaage mit App — Körperfett, BMI & mehr</div>
+          <div class="emp-card-title">Körperwaage mit App · Körperfett, BMI & mehr</div>
           <div class="emp-card-arrow">→</div>
         </a>
       </div>
@@ -964,17 +962,17 @@ footer {
       <div class="emp-grid">
         <a href="https://amzn.to/4tB6GWX" class="emp-card" target="_blank">
           <div class="emp-card-label">Günstig ~35€</div>
-          <div class="emp-card-title">Xiaomi Smart Band 10 — 8.000+ Bewertungen</div>
+          <div class="emp-card-title">Xiaomi Smart Band 10 · 8.000+ Bewertungen</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/493VeuC" class="emp-card" target="_blank">
           <div class="emp-card-label">Mittelklasse</div>
-          <div class="emp-card-title">Fitnessuhr mit GPS — präzises Tracking</div>
+          <div class="emp-card-title">Fitnessuhr mit GPS · präzises Tracking</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/3ODDMGj" class="emp-card" target="_blank">
           <div class="emp-card-label">Premium ~139€</div>
-          <div class="emp-card-title">Garmin Forerunner 55 — 11.000+ Bewertungen</div>
+          <div class="emp-card-title">Garmin Forerunner 55 · 11.000+ Bewertungen</div>
           <div class="emp-card-arrow">→</div>
         </a>
       </div>
@@ -985,17 +983,17 @@ footer {
       <div class="emp-grid">
         <a href="https://amzn.to/3Qq7gYX" class="emp-card" target="_blank">
           <div class="emp-card-label">Bestseller</div>
-          <div class="emp-card-title">Kurzhanteln verstellbar — für zuhause</div>
+          <div class="emp-card-title">Kurzhanteln verstellbar · für zuhause</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/4cpDcFt" class="emp-card" target="_blank">
           <div class="emp-card-label">Empfohlen</div>
-          <div class="emp-card-title">Gewichtsweste bis 30 kg — NEAT steigern</div>
+          <div class="emp-card-title">Gewichtsweste bis 30 kg · NEAT steigern</div>
           <div class="emp-card-arrow">→</div>
         </a>
         <a href="https://amzn.to/3QUvGtC" class="emp-card" target="_blank">
           <div class="emp-card-label">Kein Bohren</div>
-          <div class="emp-card-title">Klimmzugstange Tür — ohne Schrauben</div>
+          <div class="emp-card-title">Klimmzugstange Tür · ohne Schrauben</div>
           <div class="emp-card-arrow">→</div>
         </a>
       </div>
@@ -1012,9 +1010,9 @@ footer {
         <div class="section-label">Der Autor</div>
         <div class="autor-name">David Rybka</div>
         <div class="autor-role">Autor · Familienvater · Berufstätiger</div>
-        <p>Ich bin 45 Jahre alt, lebe im Rhein-Main-Gebiet und arbeite Vollzeit. Kein Ernährungsberater, kein Fitness-Coach — sondern jemand, der es selbst gemacht hat.</p>
-        <p>Der Moment auf dem Trampolin, als ich 90 Kilo wog und mein Sohn zugeschaut hat — das war der Wendepunkt. Dazu kam der Wunsch, gut im Anzug auszusehen, mich wohl zu fühlen und meinen Kindern lange Paroli bieten zu können.</p>
-        <p><strong>Sieben Kilo in zehn Wochen. Ohne zu hungern. Ohne mein Leben umzukrempeln.</strong> Bestehende Methoden, die funktionieren — zusammengeführt und in meinen Alltag gebracht. Genau das ist dieses Buch.</p>
+        <p>Ich bin 45 Jahre alt, lebe im Rhein-Main-Gebiet und arbeite Vollzeit. Kein Ernährungsberater, kein Fitness-Coach · sondern jemand, der es selbst gemacht hat.</p>
+        <p>Der Moment auf dem Trampolin, als ich 90 Kilo wog und mein Sohn zugeschaut hat · das war der Wendepunkt. Dazu kam der Wunsch, gut im Anzug auszusehen, mich wohl zu fühlen und meinen Kindern lange Paroli bieten zu können.</p>
+        <p><strong>Sieben Kilo in zehn Wochen. Ohne zu hungern. Ohne mein Leben umzukrempeln.</strong> Bestehende Methoden, die funktionieren · zusammengeführt und in meinen Alltag gebracht. Genau das ist dieses Buch.</p>
         <div class="autor-tags">
           <span class="autor-tag">Familienvater</span>
           <span class="autor-tag">Vollzeit berufstätig</span>
