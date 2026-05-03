@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>300 Kalorien weniger pro Tag – was das wirklich bedeutet | Abnehmen zum letzten Mal</title>
+  <meta name="description" content="300 Kalorien weniger pro Tag klingt nach nichts. Aber in einem Jahr bedeutet das 14 kg Fett weniger – ohne Hunger, ohne Diät. Die Mathematik dahinter erklärt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #F57C00;
+      --orange-light: #FF9800;
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #ffffff;
+      --text-muted: #888888;
+      --text-dim: #555555;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: #0a0a0a;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: var(--orange);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 24px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .article-tag {
+      display: inline-block;
+      background: var(--orange);
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 6vw, 60px);
+      line-height: 1.05;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-lead {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .article-meta span { color: var(--text-muted); }
+
+    /* CONTENT */
+    .article-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .article-body h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin: 48px 0 16px;
+      color: var(--text);
+    }
+    .article-body h2 span { color: var(--orange); }
+    .article-body p {
+      font-size: 16px;
+      color: #cccccc;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .article-body strong { color: var(--text); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: var(--bg3);
+      border-left: 4px solid var(--orange);
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .highlight-box p {
+      margin: 0;
+      font-size: 17px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .highlight-box .orange { color: var(--orange); font-size: 22px; font-weight: 700; }
+
+    /* TIMELINE */
+    .timeline {
+      margin: 40px 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .timeline-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #000;
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-content {
+      padding-top: 8px;
+    }
+    .timeline-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .timeline-content .kcal {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* EXAMPLES GRID */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .example-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .example-card .emoji { font-size: 32px; margin-bottom: 8px; }
+    .example-card .kcal-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--orange);
+      letter-spacing: 1px;
+    }
+    .example-card .label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, var(--bg3) 0%, #1f1200 100%);
+      border: 1px solid var(--orange);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      margin: 48px 0;
+    }
+    .cta-box h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .cta-box p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--orange);
+      color: #000;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover {
+      background: var(--orange-light);
+      transform: translateY(-2px);
+    }
+
+    /* BACK LINK */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--orange); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Abnehmen zum letzten Mal</a>
+  <div class="nav-links">
+    <a href="index.html">Start</a>
+    <a href="index.html#blog">Blog</a>
+    <a href="https://amazon.de/dp/B0GYBB4RN8" target="_blank">Buch kaufen</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <a href="index.html#blog" class="back-link">← Zurück zum Blog</a>
+  <div class="article-tag">Kaloriendefizit · Strategie</div>
+  <h1>300 Kalorien weniger pro Tag — <span>was das wirklich bedeutet</span></h1>
+  <p class="hero-lead">Klingt nach fast nichts. Ist aber die einfachste und nachhaltigste Strategie um dauerhaft Fett zu verlieren — ohne Hunger, ohne Verzicht, ohne Diät.</p>
+  <div class="article-meta">
+    <span>David Rybka</span>
+    <span>·</span>
+    <span>4 Min. Lesezeit</span>
+    <span>·</span>
+    <span>Kaloriendefizit</span>
+  </div>
+</div>
+
+<div class="article-body">
+
+  <p>Wenn du jemandem sagst „Ich esse 300 Kalorien weniger pro Tag", wirst du wahrscheinlich ein müdes Lächeln ernten. 300 kcal — das klingt nach einem Witz. Nach einer halben Portion Diät. Nach dem, was dir beim Abnehmen gar nichts bringt.</p>
+
+  <p>Aber das ist genau der Denkfehler. Denn <strong>Abnehmen ist kein Sprint, sondern Mathematik über Zeit.</strong> Und diese Mathematik ist eindeutig.</p>
+
+  <h2>Die <span>Rechnung</span></h2>
+
+  <p>1 kg Körperfett entspricht etwa 7.700 Kalorien. Das bedeutet: Um 1 kg Fett zu verlieren, musst du insgesamt 7.700 kcal mehr verbrauchen als du aufnimmst. Klingt viel? Dann rechnen wir es durch:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">1</div>
+      <div class="timeline-content">
+        <h3>Nach 1 Woche</h3>
+        <p><span class="kcal">2.100 kcal</span> Defizit — noch nichts sichtbar, aber du bist im System</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">2</div>
+      <div class="timeline-content">
+        <h3>Nach 1 Monat</h3>
+        <p><span class="kcal">~9.000 kcal</span> Defizit — ca. <strong>1,2 kg Fett</strong> verloren</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">3</div>
+      <div class="timeline-content">
+        <h3>Nach 3 Monaten</h3>
+        <p><span class="kcal">~27.000 kcal</span> Defizit — ca. <strong>3,5 kg Fett</strong> verloren</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">4</div>
+      <div class="timeline-content">
+        <h3>Nach 1 Jahr</h3>
+        <p><span class="kcal">~109.500 kcal</span> Defizit — ca. <strong>14 kg Fett</strong> verloren</p>
+      </div>
+    </div>
+  </div>
+
+  <p>14 kg in einem Jahr. Ohne Crash-Diät. Ohne Hunger. Nur durch eine einzige kleine, konsequente Gewohnheit.</p>
+
+  <h2>Was sind <span>300 kcal</span> überhaupt?</h2>
+
+  <p>Das ist der wichtigste Teil — denn 300 kcal klingen abstrakt. Aber konkret ist es erschreckend wenig:</p>
+
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="emoji">🥤</div>
+      <div class="kcal-num">~110</div>
+      <div class="label">1 Glas Orangensaft (250ml)</div>
+    </div>
+    <div class="example-card">
+      <div class="emoji">🍫</div>
+      <div class="kcal-num">~270</div>
+      <div class="label">3 Riegel Schokolade</div>
+    </div>
+    <div class="example-card">
+      <div class="emoji">☕</div>
+      <div class="kcal-num">~190</div>
+      <div class="label">1 Latte Macchiato</div>
+    </div>
+    <div class="example-card">
+      <div class="emoji">🍞</div>
+      <div class="kcal-num">~300</div>
+      <div class="label">2 Scheiben Brot mit Butter</div>
+    </div>
+  </div>
+
+  <p>Du musst also nicht weniger essen. Du musst nur <strong>eine Kleinigkeit weglassen oder ersetzen</strong> — und das konsequent.</p>
+
+  <h2>Warum <span>moderate Defizite</span> besser funktionieren</h2>
+
+  <p>Viele machen den Fehler und starten mit einem extremen Defizit — 800, 1000 kcal weniger pro Tag. Das klingt effizient, führt aber zu:</p>
+
+  <p><strong>Muskelverlust.</strong> Dein Körper greift bei zu starkem Defizit auch Muskelmasse an — nicht nur Fett. Du verlierst zwar Gewicht, aber das falsche.</p>
+
+  <p><strong>Hormonellen Reaktionen.</strong> Dein Körper senkt den Grundumsatz, du wirst müder, hungriger, gereizter. Das System fährt auf Sparflamme — und sobald du wieder normal isst, kommen die Kilos zurück. Der klassische Jojo-Effekt.</p>
+
+  <p><strong>Kein Durchhalten.</strong> Extreme Diäten halten Menschen im Schnitt 3–6 Wochen durch. Dann bricht das System zusammen.</p>
+
+  <div class="highlight-box">
+    <p>Ein Defizit von <span class="orange">300–500 kcal pro Tag</span> ist das Sweet Spot: Groß genug um messbar Fett abzubauen, klein genug um Muskeln zu erhalten, Hormone stabil zu halten — und vor allem: <strong>durchzuhalten.</strong></p>
+  </div>
+
+  <h2>Wie du die <span>300 kcal</span> findest</h2>
+
+  <p>Der erste Schritt ist zu wissen, wie viel du überhaupt brauchst. Dein täglicher Kalorienbedarf hängt von Gewicht, Größe, Alter und Aktivität ab — und ist der Ausgangspunkt für alles.</p>
+
+  <p>Wer seinen Bedarf kennt, kann gezielt schauen wo die 300 kcal herkommen. Meistens sind es keine Mahlzeiten, sondern <strong>Nebenbei-Kalorien</strong>: das Glas Saft, der Kaffee mit Milch und Zucker, die Handvoll Nüsse beim Kochen, die Soße mit 3 Esslöffeln Öl.</p>
+
+  <p>Diese Kalorien sättigen nicht — aber sie zählen trotzdem. Und genau hier liegt das Potenzial.</p>
+
+  <h2>Das <span>Wichtigste</span>: Konsistenz schlägt Intensität</h2>
+
+  <p>300 kcal weniger an 365 Tagen ist besser als 1000 kcal weniger an 90 Tagen und dann Aufgeben. Das klingt banal — aber es ist die Kernaussage dieses Buches und dieses Ansatzes.</p>
+
+  <p>Abnehmen ist kein Willensakt. Es ist ein System. Und ein gutes System funktioniert auch dann, wenn du müde bist, Stress hast, oder auf einer Geburtstagsfeier bist.</p>
+
+  <p><strong>300 kcal weniger pro Tag ist ein System, das funktioniert. Weil es machbar ist.</strong></p>
+
+  <div class="cta-box">
+    <h3>Das komplette System im Buch</h3>
+    <p>Kalorienbedarf berechnen, Mahlzeiten optimieren, Meal Prep aufbauen — alles Schritt für Schritt erklärt.</p>
+    <a href="https://amazon.de/dp/B0GYBB4RN8" class="cta-btn" target="_blank">Jetzt auf Amazon kaufen →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 David Rybka · <a href="index.html">abnehmen-zum-letzten-mal.de</a></p>
+</footer>
+
+</body>
+</html>
