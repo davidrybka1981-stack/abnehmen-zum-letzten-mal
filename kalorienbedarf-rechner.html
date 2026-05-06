@@ -6,52 +6,20 @@
 <title>Kalorienbedarf berechnen – Abnehmen zum letzten Mal</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { color-scheme: dark; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #0a0a0a;
     color: #ffffff;
     line-height: 1.6;
   }
-  .wrapper {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: #ffffff;
-  }
-  .subtitle {
-    font-size: 0.9rem;
-    color: #aaaaaa;
-    margin-bottom: 2rem;
-  }
-  .grid-4 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 1.25rem;
-  }
-  label {
-    font-size: 13px;
-    color: #cccccc;
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
+  .wrapper { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; color: #ffffff; }
+  .subtitle { font-size: 0.9rem; color: #aaaaaa; margin-bottom: 2rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 1.25rem; }
+  label { font-size: 13px; color: #cccccc; display: block; margin-bottom: 6px; font-weight: 500; }
   select, input[type="number"] {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #333333;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #ffffff;
-    background: #1a1a1a;
-    appearance: none;
-    -webkit-appearance: none;
+    width: 100%; padding: 10px 12px; border: 1px solid #333333; border-radius: 8px;
+    font-size: 14px; color: #ffffff; background: #1a1a1a; appearance: none; -webkit-appearance: none;
   }
   select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
   select:focus, input[type="number"]:focus { outline: none; border-color: #FF6600; box-shadow: 0 0 0 2px rgba(255,102,0,0.2); }
@@ -59,73 +27,60 @@
   .deficit-wrap { margin-bottom: 1.5rem; }
   .deficit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .deficit-value { font-size: 15px; font-weight: 700; color: #FF6600; }
-  input[type="range"] {
-    width: 100%;
-    accent-color: #FF6600;
-    height: 4px;
-    cursor: pointer;
-  }
+  input[type="range"] { width: 100%; accent-color: #FF6600; height: 4px; cursor: pointer; }
   .range-labels { display: flex; justify-content: space-between; margin-top: 4px; }
   .range-labels span { font-size: 11px; color: #666666; }
-  .warning {
-    margin-top: 12px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 13px;
-    display: none;
-    font-weight: 500;
-  }
-  .warning.orange { background: #2a1800; color: #FF9900; border: 1px solid #FF6600; display: block; }
-  .warning.red { background: #2a0a0a; color: #FF6666; border: 1px solid #cc3333; display: block; }
+  .warning { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 13px; display: none; font-weight: 500; }
+  .warning.warn-orange { background: #2a1800; color: #FF9900; border: 1px solid #FF6600; display: block; }
+  .warning.warn-red { background: #2a0a0a; color: #FF6666; border: 1px solid #cc3333; display: block; }
   .divider { border: none; border-top: 1px solid #2a2a2a; margin: 1.5rem 0; }
   .section-label { font-size: 12px; color: #888888; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
-  .card {
-    background: #2a1500 !important;
-    border: 1px solid #FF6600 !important;
+
+  /* Info Karten — dunkel orange */
+  .card-info {
+    background: #2a1500;
+    border: 1px solid #FF6600;
     border-radius: 10px;
     padding: 1rem;
-    transition: background 0.2s, border-color 0.2s;
   }
-  .card.green { background: #0d2010; border-color: #1a5c2a; }
-  .card.orange { background: #2a1500; border-color: #804000; }
-  .card.red { background: #2a0a0a; border-color: #803030; }
-  .card-label { font-size: 12px; color: #FF9900 !important; margin-bottom: 4px; font-weight: 500; }
-  .card.green .card-label { color: #66bb88; }
-  .card.orange .card-label { color: #FF9900; }
-  .card.red .card-label { color: #FF6666; }
-  .card-value { font-size: 28px; font-weight: 700; color: #ffffff !important; }
-  .card.green .card-value { color: #66ff99; }
-  .card.orange .card-value { color: #FF9900; }
-  .card.red .card-value { color: #FF6666; }
-  .card-unit { font-size: 11px; color: #666666; margin-top: 4px; }
-  .card.green .card-unit { color: #44aa66; }
-  .card.orange .card-unit { color: #cc7700; }
-  .card.red .card-unit { color: #cc4444; }
+  .card-info .card-label { font-size: 12px; color: #FF9900; margin-bottom: 4px; font-weight: 500; }
+  .card-info .card-value { font-size: 28px; font-weight: 700; color: #ffffff; }
+  .card-info .card-unit { font-size: 11px; color: #cc7700; margin-top: 4px; }
+
+  /* Ziel Karte — grün/orange/rot je nach Defizit */
+  .card-goal {
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .card-goal.state-green { background: #0d2010; border: 1px solid #2a8c44; }
+  .card-goal.state-orange { background: #2a1500; border: 1px solid #FF6600; }
+  .card-goal.state-red { background: #2a0a0a; border: 1px solid #cc3333; }
+  .card-goal .goal-label { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .card-goal.state-green .goal-label { color: #66bb88; }
+  .card-goal.state-orange .goal-label { color: #FF9900; }
+  .card-goal.state-red .goal-label { color: #FF6666; }
+  .card-goal .goal-value { font-size: 48px; font-weight: 800; line-height: 1; }
+  .card-goal.state-green .goal-value { color: #66ff99; }
+  .card-goal.state-orange .goal-value { color: #FF9900; }
+  .card-goal.state-red .goal-value { color: #FF6666; }
+  .card-goal .goal-unit { font-size: 13px; margin-top: 6px; }
+  .card-goal.state-green .goal-unit { color: #44aa66; }
+  .card-goal.state-orange .goal-unit { color: #cc7700; }
+  .card-goal.state-red .goal-unit { color: #cc4444; }
+
   .footer-note { font-size: 12px; color: #666666; margin-top: 1rem; line-height: 1.5; }
   .branding { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #2a2a2a; font-size: 13px; color: #666666; text-align: center; }
   .branding a { color: #FF6600; text-decoration: none; font-weight: 600; }
-  .branding a:hover { color: #ff8833; }
-
-  /* Nav */
-  .nav-bar {
-    background: rgba(10,10,10,0.95);
-    border-bottom: 1px solid #2a2a2a;
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0;
-  }
-  .nav-logo { color: #FF6600; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; }
-  .nav-back { color: #888888; font-size: 13px; text-decoration: none; }
-  .nav-back:hover { color: #FF6600; }
 </style>
 </head>
 <body>
 <div class="wrapper">
   <h1>Kalorienbedarf berechnen</h1>
-  <p class="subtitle">Berechne deinen täglichen Kalorienbedarf mit zwei anerkannten Formeln und finde dein optimales Defizit zum Abnehmen.</p>
+  <p class="subtitle">Berechne deinen täglichen Kalorienbedarf und finde dein optimales Defizit zum Abnehmen.</p>
 
   <div class="grid-4">
     <div>
@@ -172,14 +127,14 @@
 
   <hr class="divider">
 
-  <p class="section-label">Grundumsatz (BMR)</p>
+  <p class="section-label">Deine Werte</p>
   <div class="grid-2">
-    <div class="card">
-      <div class="card-label">Grundumsatz</div>
+    <div class="card-info">
+      <div class="card-label">Grundumsatz (BMR)</div>
       <div class="card-value" id="msj-bmr">—</div>
       <div class="card-unit">kcal/Tag</div>
     </div>
-    <div class="card">
+    <div class="card-info">
       <div class="card-label">Gesamtbedarf (mit Aktivität)</div>
       <div class="card-value" id="msj-tdee">—</div>
       <div class="card-unit">kcal/Tag</div>
@@ -187,10 +142,10 @@
   </div>
 
   <p class="section-label">Dein Kalorienziel zum Abnehmen</p>
-  <div class="card green" id="msj-def-card" style="margin-bottom:1rem;">
-    <div class="card-label" id="msj-def-label">Kalorienziel</div>
-    <div class="card-value" id="msj-def" style="font-size:36px;">—</div>
-    <div class="card-unit">kcal pro Tag</div>
+  <div class="card-goal state-green" id="goal-card">
+    <div class="goal-label" id="goal-label">Kalorienziel</div>
+    <div class="goal-value" id="msj-def">—</div>
+    <div class="goal-unit">kcal pro Tag</div>
   </div>
 
   <p class="footer-note">Schätzwert auf Basis der <strong style="color:#cccccc;">Mifflin-St-Jeor-Formel</strong> (1990), heute der wissenschaftliche Standard, empfohlen von Ernährungsgesellschaften weltweit. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab und passe es an.</p>
@@ -210,35 +165,31 @@ function calc() {
   var def = parseInt(document.getElementById('deficit').value);
 
   document.getElementById('deficit-label').textContent = '−' + def + ' kcal';
-
   if (!age || !w || !h) return;
 
-  var msj;
-  if (g === 'male') {
-    msj = (10 * w) + (6.25 * h) - (5 * age) + 5;
-  } else {
-    msj = (10 * w) + (6.25 * h) - (5 * age) - 161;
-  }
+  var msj = (g === 'male')
+    ? (10 * w) + (6.25 * h) - (5 * age) + 5
+    : (10 * w) + (6.25 * h) - (5 * age) - 161;
 
   document.getElementById('msj-bmr').textContent = Math.round(msj);
   document.getElementById('msj-tdee').textContent = Math.round(msj * act);
   document.getElementById('msj-def').textContent = Math.round(msj * act - def);
 
   var warn = document.getElementById('warning');
-  var msjCard = document.getElementById('msj-def-card');
+  var goalCard = document.getElementById('goal-card');
 
   if (def <= 500) {
     warn.className = 'warning';
     warn.textContent = '';
-    msjCard.className = 'card green';
+    goalCard.className = 'card-goal state-green';
   } else if (def <= 699) {
-    warn.className = 'warning orange';
+    warn.className = 'warning warn-orange';
     warn.textContent = 'Nicht empfehlenswert — hohes Risiko für Jo-Jo-Effekt und Muskelverlust.';
-    msjCard.className = 'card orange';
+    goalCard.className = 'card-goal state-orange';
   } else {
-    warn.className = 'warning red';
+    warn.className = 'warning warn-red';
     warn.textContent = 'Zu aggressiv — Muskelverlust, Stoffwechsel fährt runter, Jo-Jo-Effekt vorprogrammiert.';
-    msjCard.className = 'card red';
+    goalCard.className = 'card-goal state-red';
   }
 }
 
