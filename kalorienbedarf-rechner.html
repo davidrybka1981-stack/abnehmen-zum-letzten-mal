@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"> 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kalorienbedarf berechnen – Abnehmen zum letzten Mal</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { color-scheme: dark; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #fff;
-    color: #1a1a1a;
+    background: #0a0a0a;
+    color: #ffffff;
     line-height: 1.6;
   }
   .wrapper {
@@ -20,13 +20,13 @@
   }
   h1 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.25rem;
-    color: #1a1a1a;
+    color: #ffffff;
   }
   .subtitle {
     font-size: 0.9rem;
-    color: #666;
+    color: #aaaaaa;
     margin-bottom: 2rem;
   }
   .grid-4 {
@@ -37,35 +37,36 @@
   }
   label {
     font-size: 13px;
-    color: #555;
+    color: #cccccc;
     display: block;
     margin-bottom: 6px;
+    font-weight: 500;
   }
   select, input[type="number"] {
     width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
+    padding: 10px 12px;
+    border: 1px solid #333333;
     border-radius: 8px;
     font-size: 14px;
-    color: #1a1a1a;
-    background: #fff;
+    color: #ffffff;
+    background: #1a1a1a;
     appearance: none;
     -webkit-appearance: none;
   }
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-  select:focus, input[type="number"]:focus { outline: none; border-color: #F57C00; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  select:focus, input[type="number"]:focus { outline: none; border-color: #FF6600; box-shadow: 0 0 0 2px rgba(255,102,0,0.2); }
   .activity-wrap { margin-bottom: 1.25rem; }
   .deficit-wrap { margin-bottom: 1.5rem; }
   .deficit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .deficit-value { font-size: 15px; font-weight: 600; color: #F57C00; }
+  .deficit-value { font-size: 15px; font-weight: 700; color: #FF6600; }
   input[type="range"] {
     width: 100%;
-    accent-color: #F57C00;
+    accent-color: #FF6600;
     height: 4px;
     cursor: pointer;
   }
   .range-labels { display: flex; justify-content: space-between; margin-top: 4px; }
-  .range-labels span { font-size: 11px; color: #aaa; }
+  .range-labels span { font-size: 11px; color: #666666; }
   .warning {
     margin-top: 12px;
     padding: 10px 14px;
@@ -74,35 +75,51 @@
     display: none;
     font-weight: 500;
   }
-  .warning.orange { background: #FFF3E0; color: #E65100; display: block; }
-  .warning.red { background: #FFEBEE; color: #B71C1C; display: block; }
-  .divider { border: none; border-top: 1px solid #eee; margin: 1.5rem 0; }
-  .section-label { font-size: 13px; color: #666; margin-bottom: 12px; }
+  .warning.orange { background: #2a1800; color: #FF9900; border: 1px solid #FF6600; display: block; }
+  .warning.red { background: #2a0a0a; color: #FF6666; border: 1px solid #cc3333; display: block; }
+  .divider { border: none; border-top: 1px solid #2a2a2a; margin: 1.5rem 0; }
+  .section-label { font-size: 12px; color: #888888; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
   .card {
-    background: #f5f5f5;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
     border-radius: 10px;
     padding: 1rem;
-    transition: background 0.2s;
+    transition: background 0.2s, border-color 0.2s;
   }
-  .card.green { background: #E8F5E9; }
-  .card.orange { background: #FFF3E0; }
-  .card.red { background: #FFEBEE; }
-  .card-label { font-size: 12px; color: #777; margin-bottom: 4px; }
-  .card.green .card-label { color: #2E7D32; }
-  .card.orange .card-label { color: #E65100; }
-  .card.red .card-label { color: #B71C1C; }
-  .card-value { font-size: 26px; font-weight: 600; color: #1a1a1a; }
-  .card.green .card-value { color: #1B5E20; }
-  .card.orange .card-value { color: #E65100; }
-  .card.red .card-value { color: #B71C1C; }
-  .card-unit { font-size: 11px; color: #aaa; margin-top: 4px; }
-  .card.green .card-unit { color: #388E3C; }
-  .card.orange .card-unit { color: #F57C00; }
-  .card.red .card-unit { color: #E53935; }
-  .footer-note { font-size: 12px; color: #aaa; margin-top: 1rem; }
-  .branding { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 13px; color: #aaa; text-align: center; }
-  .branding a { color: #F57C00; text-decoration: none; }
+  .card.green { background: #0d2010; border-color: #1a5c2a; }
+  .card.orange { background: #2a1500; border-color: #804000; }
+  .card.red { background: #2a0a0a; border-color: #803030; }
+  .card-label { font-size: 12px; color: #888888; margin-bottom: 4px; font-weight: 500; }
+  .card.green .card-label { color: #66bb88; }
+  .card.orange .card-label { color: #FF9900; }
+  .card.red .card-label { color: #FF6666; }
+  .card-value { font-size: 28px; font-weight: 700; color: #ffffff; }
+  .card.green .card-value { color: #66ff99; }
+  .card.orange .card-value { color: #FF9900; }
+  .card.red .card-value { color: #FF6666; }
+  .card-unit { font-size: 11px; color: #666666; margin-top: 4px; }
+  .card.green .card-unit { color: #44aa66; }
+  .card.orange .card-unit { color: #cc7700; }
+  .card.red .card-unit { color: #cc4444; }
+  .footer-note { font-size: 12px; color: #666666; margin-top: 1rem; line-height: 1.5; }
+  .branding { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #2a2a2a; font-size: 13px; color: #666666; text-align: center; }
+  .branding a { color: #FF6600; text-decoration: none; font-weight: 600; }
+  .branding a:hover { color: #ff8833; }
+
+  /* Nav */
+  .nav-bar {
+    background: rgba(10,10,10,0.95);
+    border-bottom: 1px solid #2a2a2a;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+  .nav-logo { color: #FF6600; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; }
+  .nav-back { color: #888888; font-size: 13px; text-decoration: none; }
+  .nav-back:hover { color: #FF6600; }
 </style>
 </head>
 <body>
@@ -158,46 +175,25 @@
   <p class="section-label">Grundumsatz (BMR)</p>
   <div class="grid-2">
     <div class="card">
-      <div class="card-label">Harris-Benedict</div>
-      <div class="card-value" id="hb-bmr">—</div>
-      <div class="card-unit">kcal/Tag</div>
-    </div>
-    <div class="card">
-      <div class="card-label">Mifflin-St-Jeor</div>
+      <div class="card-label">Grundumsatz</div>
       <div class="card-value" id="msj-bmr">—</div>
       <div class="card-unit">kcal/Tag</div>
     </div>
-  </div>
-
-  <p class="section-label">Gesamtbedarf (mit Aktivität)</p>
-  <div class="grid-2">
     <div class="card">
-      <div class="card-label">Harris-Benedict</div>
-      <div class="card-value" id="hb-tdee">—</div>
-      <div class="card-unit">kcal/Tag</div>
-    </div>
-    <div class="card">
-      <div class="card-label">Mifflin-St-Jeor</div>
+      <div class="card-label">Gesamtbedarf (mit Aktivität)</div>
       <div class="card-value" id="msj-tdee">—</div>
       <div class="card-unit">kcal/Tag</div>
     </div>
   </div>
 
-  <p class="section-label">Kalorienziel zum Abnehmen</p>
-  <div class="grid-2">
-    <div class="card green" id="hb-def-card">
-      <div class="card-label" id="hb-def-label">Harris-Benedict</div>
-      <div class="card-value" id="hb-def">—</div>
-      <div class="card-unit">kcal/Tag Ziel</div>
-    </div>
-    <div class="card green" id="msj-def-card">
-      <div class="card-label" id="msj-def-label">Mifflin-St-Jeor</div>
-      <div class="card-value" id="msj-def">—</div>
-      <div class="card-unit">kcal/Tag Ziel</div>
-    </div>
+  <p class="section-label">Dein Kalorienziel zum Abnehmen</p>
+  <div class="card green" id="msj-def-card" style="margin-bottom:1rem;">
+    <div class="card-label" id="msj-def-label">Kalorienziel</div>
+    <div class="card-value" id="msj-def" style="font-size:36px;">—</div>
+    <div class="card-unit">kcal pro Tag</div>
   </div>
 
-  <p class="footer-note">Beide Formeln liefern Schätzwerte. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab und passe es an.</p>
+  <p class="footer-note">Schätzwert auf Basis der <strong style="color:#cccccc;">Mifflin-St-Jeor-Formel</strong> (1990), heute der wissenschaftliche Standard, empfohlen von Ernährungsgesellschaften weltweit. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab und passe es an.</p>
 
   <div class="branding">
     Aus dem Buch <a href="https://amazon.de/dp/B0GYBB4RN8" target="_blank">„Abnehmen zum letzten Mal"</a> von David Rybka
@@ -217,40 +213,31 @@ function calc() {
 
   if (!age || !w || !h) return;
 
-  var hb, msj;
+  var msj;
   if (g === 'male') {
-    hb = 88.4 + (13.4 * w) + (4.8 * h) - (5.7 * age);
     msj = (10 * w) + (6.25 * h) - (5 * age) + 5;
   } else {
-    hb = 447.6 + (9.2 * w) + (3.1 * h) - (4.3 * age);
     msj = (10 * w) + (6.25 * h) - (5 * age) - 161;
   }
 
-  document.getElementById('hb-bmr').textContent = Math.round(hb);
   document.getElementById('msj-bmr').textContent = Math.round(msj);
-  document.getElementById('hb-tdee').textContent = Math.round(hb * act);
   document.getElementById('msj-tdee').textContent = Math.round(msj * act);
-  document.getElementById('hb-def').textContent = Math.round(hb * act - def);
   document.getElementById('msj-def').textContent = Math.round(msj * act - def);
 
   var warn = document.getElementById('warning');
-  var hbCard = document.getElementById('hb-def-card');
   var msjCard = document.getElementById('msj-def-card');
 
   if (def <= 500) {
     warn.className = 'warning';
     warn.textContent = '';
-    hbCard.className = 'card green';
     msjCard.className = 'card green';
   } else if (def <= 699) {
     warn.className = 'warning orange';
     warn.textContent = 'Nicht empfehlenswert — hohes Risiko für Jo-Jo-Effekt und Muskelverlust.';
-    hbCard.className = 'card orange';
     msjCard.className = 'card orange';
   } else {
     warn.className = 'warning red';
     warn.textContent = 'Zu aggressiv — Muskelverlust, Stoffwechsel fährt runter, Jo-Jo-Effekt vorprogrammiert.';
-    hbCard.className = 'card red';
     msjCard.className = 'card red';
   }
 }
