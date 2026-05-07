@@ -233,7 +233,7 @@ input[type="range"]{width:100%;accent-color:var(--o);height:4px;cursor:pointer;b
 .author-bio h2{color:#fff;margin-top:16px}
 .author-bio p{font-size:17px;color:#d6d3d1;line-height:1.7;margin-top:20px}
 .author-bio strong{color:#fff}
-.author-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.author-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;justify-content:flex-start}
 .atag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#d6d3d1;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700}
 .story-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
 .s3card{background:rgba(255,241,231,.07);border:1px solid rgba(255,122,24,.2);border-radius:18px;padding:18px}
@@ -301,13 +301,13 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
 /* ── GLOBAL GRID PATTERN ── */
 .hero::after,.section::after,.trust::after,.plan-cta::after,.kaufen-section::after,.blog-section::after,.emp-section::after,.author-section::after,.calc-section::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(0,0,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.07) 1px,transparent 1px);
   background-size:48px 48px;
 }
-.hero::after{background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px)}
-.calc-section::after,.blog-section::after,.author-section::after{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)}
-.plan-cta::after{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px)}
-.kaufen-section::after{background-image:linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px)}
+.hero::after{background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)}
+.calc-section::after,.blog-section::after,.author-section::after{background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px)}
+.plan-cta::after{background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px)}
+.kaufen-section::after{background-image:linear-gradient(rgba(0,0,0,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.12) 1px,transparent 1px)}
 .section,.trust,.plan-cta,.kaufen-section,.blog-section,.emp-section,.author-section,.calc-section{position:relative;overflow:hidden}
 .section>.section-inner,.trust>.trust-inner,.plan-cta>.plan-cta-inner,.kaufen-section>.kaufen-inner,.blog-section>.section-inner,.emp-section>.section-inner,.author-section>.section-inner,.calc-section>.section-inner{position:relative;z-index:1}
 
@@ -337,20 +337,21 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
 
 /* ── GLASS BUTTONS ── */
 .btn-ghost{
-  background:rgba(255,255,255,.06)!important;
-  backdrop-filter:blur(12px)!important;
-  -webkit-backdrop-filter:blur(12px)!important;
-  border:1px solid rgba(255,255,255,.18)!important;
-  color:#fff!important;
-}
-.btn-ghost:hover{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.35)!important}
-.btn-cream{
-  background:rgba(255,255,255,.12)!important;
+  background:rgba(255,255,255,.08)!important;
   backdrop-filter:blur(12px)!important;
   -webkit-backdrop-filter:blur(12px)!important;
   border:1px solid rgba(255,255,255,.22)!important;
   color:#fff!important;
 }
+.btn-ghost:hover{background:rgba(255,255,255,.18)!important;border-color:rgba(255,255,255,.4)!important}
+.btn-cream{
+  background:rgba(255,255,255,.14)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  color:#fff!important;
+}
+.btn-cream:hover{background:rgba(255,255,255,.24)!important}
 .hstat{
   background:rgba(255,255,255,.06)!important;
   backdrop-filter:blur(12px)!important;
@@ -378,15 +379,37 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
   -webkit-backdrop-filter:blur(12px)!important;
 }
 .kbtn-white{
-  background:rgba(255,255,255,.18)!important;
+  background:rgba(255,255,255,.15)!important;
   backdrop-filter:blur(14px)!important;
   -webkit-backdrop-filter:blur(14px)!important;
-  border:2px solid rgba(255,255,255,.5)!important;
+  border:2px solid rgba(255,255,255,.55)!important;
   color:#fff!important;
 }
-.kbtn-white:hover{background:rgba(255,255,255,.28)!important}
+.kbtn-white:hover{background:rgba(255,255,255,.26)!important}
 
-/* ── BIG GOAL CARD ── */
+/* ── ANIMATED COUNTER ── */
+@keyframes countUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hstat.counting strong{animation:countUp .4s ease forwards}
+
+/* ── GLOW PULSE on primary CTA ── */
+@keyframes glowPulse{0%,100%{box-shadow:0 12px 30px rgba(244,90,5,.25),0 0 0 0 rgba(244,90,5,.4)}50%{box-shadow:0 12px 30px rgba(244,90,5,.35),0 0 0 10px rgba(244,90,5,0)}}
+.btn-orange{animation:glowPulse 2.8s ease-in-out infinite}
+.btn-orange:hover{animation:none;background:#d94f05;transform:translateY(-2px)}
+
+/* ── BOOK TILT on mobile (touch) ── */
+@media(hover:hover){
+  .book-scene{cursor:none}
+}
+
+/* ── SECTION HEADING GLOW ── */
+.hero h1 em{
+  text-shadow:0 0 40px rgba(244,90,5,.5),0 0 80px rgba(244,90,5,.2);
+}
+
+/* ── MOBILE NAV improved ── */
+.mobile-nav a:last-child{border-bottom:none}
+
+
 .cgoal-big{
   border-radius:18px;padding:24px;text-align:center;
   margin-top:14px;transition:background .35s,border-color .35s;
@@ -440,7 +463,6 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
     <a href="#plan" onclick="closeMob()">7-Tage-Plan</a>
     <a href="#rechner" onclick="closeMob()">Rechner</a>
     <a href="#blog" onclick="closeMob()">Blog</a>
-    <a href="#empfehlungen" onclick="closeMob()">Empfehlungen</a>
     <a href="#empfehlungen" onclick="closeMob()">Empfehlungen</a>
     <a href="#autor" onclick="closeMob()">Autor</a>
   </div>
@@ -770,6 +792,53 @@ document.getElementById('ham').addEventListener('click',function(){this.classLis
 // SCROLL ANIMATIONS
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.12});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// ANIMATED COUNTERS
+(function(){
+  const stats=[
+    {el:document.querySelector('.hstat:nth-child(1) strong'),target:7,prefix:'−',suffix:'kg',decimals:0},
+    {el:document.querySelector('.hstat:nth-child(2) strong'),target:8,prefix:'',suffix:'',decimals:0},
+    {el:document.querySelector('.hstat:nth-child(3) strong'),target:48,prefix:'',suffix:'g+',decimals:0}
+  ];
+  let done=false;
+  const countObs=new IntersectionObserver(entries=>{
+    if(done)return;
+    if(entries[0].isIntersecting){
+      done=true;
+      stats.forEach(s=>{
+        if(!s.el)return;
+        let start=0;const dur=1200;const step=16;
+        const inc=s.target/(dur/step);
+        const timer=setInterval(()=>{
+          start=Math.min(start+inc,s.target);
+          s.el.textContent=s.prefix+(s.decimals?start.toFixed(s.decimals):Math.round(start))+s.suffix;
+          if(start>=s.target)clearInterval(timer);
+        },step);
+      });
+    }
+  },{threshold:.5});
+  const heroStats=document.querySelector('.hero-stats');
+  if(heroStats)countObs.observe(heroStats);
+})();
+
+// BOOK MOUSE PARALLAX
+(function(){
+  const scene=document.querySelector('.book-scene');
+  const book=document.querySelector('.book-3d');
+  if(!scene||!book)return;
+  let base={x:-18,y:6};
+  document.addEventListener('mousemove',function(e){
+    const rect=scene.getBoundingClientRect();
+    const cx=rect.left+rect.width/2;
+    const cy=rect.top+rect.height/2;
+    const dx=(e.clientX-cx)/window.innerWidth;
+    const dy=(e.clientY-cy)/window.innerHeight;
+    book.style.transform=`rotateY(${base.x+dx*12}deg) rotateX(${base.y-dy*8}deg) translateZ(0)`;
+  });
+  scene.addEventListener('mouseleave',function(){
+    book.style.transform=`rotateY(${base.x}deg) rotateX(${base.y}deg) translateZ(0)`;
+  });
+})();
 
 // CALCULATOR
 (function(){
