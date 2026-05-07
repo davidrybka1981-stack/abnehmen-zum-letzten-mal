@@ -1,311 +1,142 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>300 Kalorien weniger pro Tag – was das wirklich bedeutet | Abnehmen zum letzten Mal</title>
-  <meta name="description" content="300 Kalorien weniger pro Tag klingt nach nichts. Aber in einem Jahr bedeutet das 14 kg Fett weniger – ohne Hunger, ohne Diät. Die Mathematik dahinter erklärt." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --orange: #F57C00;
-      --orange-light: #FF9800;
-      --bg: #0a0a0a;
-      --bg2: #111111;
-      --bg3: #1a1a1a;
-      --border: #2a2a2a;
-      --text: #ffffff;
-      --text-muted: #888888;
-      --text-dim: #555555;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* NAV */
-    nav {
-      background: #0a0a0a;
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      color: var(--orange);
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
-      margin-left: 24px;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--orange); }
-
-    /* HERO */
-    .hero {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 64px 24px 40px;
-    }
-    .article-tag {
-      display: inline-block;
-      background: var(--orange);
-      color: #000;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 2px;
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(36px, 6vw, 60px);
-      line-height: 1.05;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-    .hero h1 span { color: var(--orange); }
-    .hero-lead {
-      font-size: 18px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-    .article-meta {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 13px;
-      color: var(--text-dim);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 0;
-    }
-    .article-meta span { color: var(--text-muted); }
-
-    /* CONTENT */
-    .article-body {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-    .article-body h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 1px;
-      margin: 48px 0 16px;
-      color: var(--text);
-    }
-    .article-body h2 span { color: var(--orange); }
-    .article-body p {
-      font-size: 16px;
-      color: #cccccc;
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
-    .article-body strong { color: var(--text); }
-
-    /* HIGHLIGHT BOX */
-    .highlight-box {
-      background: var(--bg3);
-      border-left: 4px solid var(--orange);
-      border-radius: 0 8px 8px 0;
-      padding: 24px 28px;
-      margin: 32px 0;
-    }
-    .highlight-box p {
-      margin: 0;
-      font-size: 17px;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .highlight-box .orange { color: var(--orange); font-size: 22px; font-weight: 700; }
-
-    /* TIMELINE */
-    .timeline {
-      margin: 40px 0;
-      position: relative;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 24px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--border);
-    }
-    .timeline-item {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 28px;
-      position: relative;
-    }
-    .timeline-dot {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--orange);
-      color: #000;
-      font-weight: 700;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-    .timeline-content {
-      padding-top: 8px;
-    }
-    .timeline-content h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .timeline-content p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin: 0;
-    }
-    .timeline-content .kcal {
-      color: var(--orange);
-      font-weight: 700;
-    }
-
-    /* EXAMPLES GRID */
-    .examples-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin: 32px 0;
-    }
-    .example-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-    .example-card .emoji { font-size: 32px; margin-bottom: 8px; }
-    .example-card .kcal-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: var(--orange);
-      letter-spacing: 1px;
-    }
-    .example-card .label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* CTA */
-    .cta-box {
-      background: linear-gradient(135deg, var(--bg3) 0%, #1f1200 100%);
-      border: 1px solid var(--orange);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-      margin: 48px 0;
-    }
-    .cta-box h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-    .cta-box p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: var(--orange);
-      color: #000;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .cta-btn:hover {
-      background: var(--orange-light);
-      transform: translateY(-2px);
-    }
-
-    /* BACK LINK */
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
-      margin-bottom: 32px;
-      transition: color 0.2s;
-    }
-    .back-link:hover { color: var(--orange); }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 13px;
-    }
-    footer a { color: var(--text-muted); text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>300 Kalorien weniger pro Tag – was das wirklich bedeutet | Abnehmen zum letzten Mal</title>
+<meta name="description" content="300 Kalorien weniger pro Tag klingt nach nichts. Aber in einem Jahr bedeutet das 14 kg Fett weniger – ohne Hunger, ohne Diät. Die Mathematik dahinter erklärt.">
+<meta name="author" content="David Rybka">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TYE4LEN3MG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TYE4LEN3MG');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--o:#f45a05;--o2:#ff7a18;--cream:#f8f2e8;--stone:#11100f;--muted:#66615b;--border:#2a2a2a;--bg:#0a0a0a;--bg2:#111111;--bg3:#1a1a1a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:#e5e5e5;line-height:1.8;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(244,90,5,.2);padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.nav-brand{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.65);font-weight:600;transition:.18s}
+.nav-links a:hover{color:var(--o)}
+.nav-links .nav-cta{background:var(--o);color:#fff;padding:8px 16px;border-radius:10px;font-size:13px;font-weight:800}
+.nav-links .nav-cta:hover{background:#d94f05}
+/* HERO */
+.art-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0800 100%);padding:80px 24px 60px;position:relative;overflow:hidden}
+.art-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(244,90,5,.12),transparent 50%)}
+.art-hero::after{content:'';position:absolute;inset:0;opacity:.05;background-image:linear-gradient(90deg,#fff 1px,transparent 1px),linear-gradient(#fff 1px,transparent 1px);background-size:48px 48px}
+.art-hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;transition:.18s}
+.back-link:hover{color:var(--o)}
+.art-tag{display:inline-block;background:var(--o);color:#000;font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;border-radius:4px;margin-bottom:20px}
+.art-hero h1{font-size:clamp(32px,5.5vw,56px);font-weight:900;line-height:1.08;color:#fff;letter-spacing:-.02em;margin-bottom:20px}
+.art-hero h1 span{color:var(--o)}
+.art-lead{font-size:18px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:28px}
+.art-meta{display:flex;align-items:center;gap:14px;font-size:13px;color:rgba(255,255,255,.35);padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
+/* BODY */
+.art-body{max-width:780px;margin:0 auto;padding:56px 24px 80px}
+.art-body h2{font-size:26px;font-weight:900;color:#fff;margin:48px 0 16px;padding-left:16px;border-left:4px solid var(--o);letter-spacing:-.01em}
+.art-body h3{font-size:20px;font-weight:800;color:#fff;margin:32px 0 12px}
+.art-body p{font-size:16px;color:#aaa;margin-bottom:18px;line-height:1.8}
+.art-body strong{color:#e5e5e5}
+.art-body ul,.art-body ol{padding-left:24px;margin-bottom:20px;color:#aaa}
+.art-body li{margin-bottom:8px;line-height:1.7}
+/* BOXES */
+.hbox{background:var(--bg3);border-left:4px solid var(--o);border-radius:0 10px 10px 0;padding:22px 26px;margin:28px 0}
+.hbox p{margin:0;font-size:16px;color:#e5e5e5}
+.hbox strong{color:var(--o)}
+.tipbox{background:#1f1f00;border:1px solid rgba(244,90,5,.4);padding:16px 20px;border-radius:10px;margin:20px 0;font-size:14px;color:#d4d4aa}
+.tipbox::before{content:'TIPP: ';color:var(--o);font-weight:900}
+.warnbox{background:#1a0800;border:1px solid rgba(244,90,5,.5);padding:16px 20px;border-radius:10px;margin:20px 0;font-size:14px;color:#e5c9aa}
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+th{background:var(--o);color:#000;padding:12px 16px;text-align:left;font-weight:900}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:#aaa}
+tr:nth-child(even) td{background:var(--bg3)}
+/* FORMULA BOX */
+.formula-box{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;margin:24px 0;text-align:center}
+.formula{font-size:15px;font-family:monospace;color:var(--o);margin:8px 0;line-height:1.8}
+.formula-box p{color:#aaa;font-size:13px;margin:0}
+/* SWAP GRID */
+.swap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.swap-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px}
+.swap-card .statt{font-size:12px;color:#666;margin-bottom:4px}
+.swap-card .nimm{font-size:14px;color:#e5e5e5;font-weight:800}
+.swap-card .ersparnis{font-size:13px;color:var(--o);margin-top:4px;font-weight:700}
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative}
+.timeline::before{content:'';position:absolute;left:22px;top:0;bottom:0;width:2px;background:var(--border)}
+.titem{display:flex;gap:20px;margin-bottom:24px}
+.tdot{width:44px;height:44px;border-radius:50%;background:var(--o);color:#000;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.tcontent{padding-top:6px}
+.tcontent h3{font-size:15px;font-weight:800;color:#fff;margin:0 0 4px}
+.tcontent p{font-size:13px;color:#888;margin:0}
+.tcontent .kcal{color:var(--o);font-weight:700}
+/* EXAMPLES GRID */
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:24px 0}
+.ex-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.ex-card .emoji{font-size:28px;margin-bottom:6px}
+.ex-num{font-size:24px;font-weight:900;color:var(--o)}
+.ex-lbl{font-size:12px;color:#888;margin-top:4px}
+/* PROTEIN GRID */
+.protein-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:16px 0}
+.pccard{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.pccard .amount{font-size:26px;font-weight:900;color:var(--o)}
+.pccard .food{font-size:13px;color:#e5e5e5;margin:4px 0;font-weight:700}
+.pccard .kcal{font-size:11px;color:#666}
+/* DAY GRID */
+.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:16px 0}
+.day-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.day-card.active{border-color:var(--o)}
+.day-card .day{font-size:11px;color:#666;margin-bottom:4px}
+.day-card .status{font-size:14px;font-weight:800;color:var(--o)}
+.day-card.inactive .status{color:#444}
+/* CTA BOX */
+.cta-box{background:linear-gradient(135deg,var(--bg3) 0%,#1f1200 100%);border:1px solid var(--o);border-radius:16px;padding:40px;text-align:center;margin:48px 0}
+.cta-box h3{font-size:26px;font-weight:900;color:#fff;margin-bottom:10px}
+.cta-box p{color:#888;margin-bottom:24px;font-size:15px}
+.cta-btn{display:inline-block;background:var(--o);color:#000;font-weight:900;font-size:15px;padding:14px 32px;border-radius:10px;transition:.2s}
+.cta-btn:hover{background:var(--o2);transform:translateY(-2px)}
+.cta-btn.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);margin-left:10px}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;font-size:13px;color:#444}
+footer a{color:var(--o)}
+@media(max-width:650px){
+  nav{padding:12px 16px}
+  .art-hero{padding:60px 16px 40px}
+  .art-body{padding:40px 16px 60px}
+  .art-hero h1{font-size:28px}
+  .swap-grid{grid-template-columns:1fr}
+  .cta-box{padding:28px 20px}
+}
+</style>
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="nav-logo">Abnehmen zum letzten Mal</a>
+  <a href="/" class="nav-brand">Abnehmen zum letzten Mal</a>
   <div class="nav-links">
-    <a href="index.html">Start</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="https://amazon.de/dp/B0GYBB4RN8" target="_blank">Buch kaufen</a>
+    <a href="/#blog">Blog</a>
+    <a href="/kalorienbedarf-rechner.html">Rechner</a>
+    <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenzumle-21" target="_blank" rel="noopener" class="nav-cta">Buch kaufen</a>
   </div>
 </nav>
-
-<div class="hero">
-  <a href="index.html#blog" class="back-link">← Zurück zum Blog</a>
-  <div class="article-tag">Kaloriendefizit · Strategie</div>
-  <h1>300 Kalorien weniger pro Tag — <span>was das wirklich bedeutet</span></h1>
-  <p class="hero-lead">Klingt nach fast nichts. Ist aber die einfachste und nachhaltigste Strategie um dauerhaft Fett zu verlieren — ohne Hunger, ohne Verzicht, ohne Diät.</p>
-  <div class="article-meta">
-    <span>David Rybka</span>
-    <span>·</span>
-    <span>4 Min. Lesezeit</span>
-    <span>·</span>
-    <span>Kaloriendefizit</span>
+<div class="art-hero">
+  <div class="art-hero-inner">
+    <a href="/#blog" class="back-link">← Zurück zum Blog</a>
+    <div class="art-tag">Kaloriendefizit · Strategie</div>
+    <h1>300 Kalorien weniger pro Tag — <span>was das wirklich bedeutet</span></h1>
+    <p class="art-lead">Klingt nach fast nichts. Ist aber die einfachste und nachhaltigste Strategie um dauerhaft Fett zu verlieren.</p>
+    <div class="art-meta">
+      <span>David Rybka · 4 Min. Lesezeit · Kaloriendefizit</span>
+    </div>
   </div>
 </div>
-
-<div class="article-body">
-
-  <p>Wenn du jemandem sagst „Ich esse 300 Kalorien weniger pro Tag", wirst du wahrscheinlich ein müdes Lächeln ernten. 300 kcal — das klingt nach einem Witz. Nach einer halben Portion Diät. Nach dem, was dir beim Abnehmen gar nichts bringt.</p>
+<div class="art-body">
+<p>Wenn du jemandem sagst „Ich esse 300 Kalorien weniger pro Tag", wirst du wahrscheinlich ein müdes Lächeln ernten. 300 kcal — das klingt nach einem Witz. Nach einer halben Portion Diät. Nach dem, was dir beim Abnehmen gar nichts bringt.</p>
 
   <p>Aber das ist genau der Denkfehler. Denn <strong>Abnehmen ist kein Sprint, sondern Mathematik über Zeit.</strong> Und diese Mathematik ist eindeutig.</p>
 
@@ -314,30 +145,30 @@
   <p>1 kg Körperfett entspricht etwa 7.700 Kalorien. Das bedeutet: Um 1 kg Fett zu verlieren, musst du insgesamt 7.700 kcal mehr verbrauchen als du aufnimmst. Klingt viel? Dann rechnen wir es durch:</p>
 
   <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot">1</div>
-      <div class="timeline-content">
+    <div class="titem">
+      <div class="tdot">1</div>
+      <div class="tcontent">
         <h3>Nach 1 Woche</h3>
         <p><span class="kcal">2.100 kcal</span> Defizit — noch nichts sichtbar, aber du bist im System</p>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-dot">2</div>
-      <div class="timeline-content">
+    <div class="titem">
+      <div class="tdot">2</div>
+      <div class="tcontent">
         <h3>Nach 1 Monat</h3>
         <p><span class="kcal">~9.000 kcal</span> Defizit — ca. <strong>1,2 kg Fett</strong> verloren</p>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-dot">3</div>
-      <div class="timeline-content">
+    <div class="titem">
+      <div class="tdot">3</div>
+      <div class="tcontent">
         <h3>Nach 3 Monaten</h3>
         <p><span class="kcal">~27.000 kcal</span> Defizit — ca. <strong>3,5 kg Fett</strong> verloren</p>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-dot">4</div>
-      <div class="timeline-content">
+    <div class="titem">
+      <div class="tdot">4</div>
+      <div class="tcontent">
         <h3>Nach 1 Jahr</h3>
         <p><span class="kcal">~109.500 kcal</span> Defizit — ca. <strong>14 kg Fett</strong> verloren</p>
       </div>
@@ -350,26 +181,26 @@
 
   <p>Das ist der wichtigste Teil — denn 300 kcal klingen abstrakt. Aber konkret ist es erschreckend wenig:</p>
 
-  <div class="examples-grid">
-    <div class="example-card">
+  <div class="ex-grid">
+    <div class="ex-card">
       <div class="emoji">🥤</div>
-      <div class="kcal-num">~110</div>
-      <div class="label">1 Glas Orangensaft (250ml)</div>
+      <div class="ex-num">~110</div>
+      <div class="ex-lbl">1 Glas Orangensaft (250ml)</div>
     </div>
-    <div class="example-card">
+    <div class="ex-card">
       <div class="emoji">🍫</div>
-      <div class="kcal-num">~270</div>
-      <div class="label">3 Riegel Schokolade</div>
+      <div class="ex-num">~270</div>
+      <div class="ex-lbl">3 Riegel Schokolade</div>
     </div>
-    <div class="example-card">
+    <div class="ex-card">
       <div class="emoji">☕</div>
-      <div class="kcal-num">~190</div>
-      <div class="label">1 Latte Macchiato</div>
+      <div class="ex-num">~190</div>
+      <div class="ex-lbl">1 Latte Macchiato</div>
     </div>
-    <div class="example-card">
+    <div class="ex-card">
       <div class="emoji">🍞</div>
-      <div class="kcal-num">~300</div>
-      <div class="label">2 Scheiben Brot mit Butter</div>
+      <div class="ex-num">~300</div>
+      <div class="ex-lbl">2 Scheiben Brot mit Butter</div>
     </div>
   </div>
 
@@ -385,7 +216,7 @@
 
   <p><strong>Kein Durchhalten.</strong> Extreme Diäten halten Menschen im Schnitt 3–6 Wochen durch. Dann bricht das System zusammen.</p>
 
-  <div class="highlight-box">
+  <div class="hbox">
     <p>Ein Defizit von <span class="orange">300–500 kcal pro Tag</span> ist das Sweet Spot: Groß genug um messbar Fett abzubauen, klein genug um Muskeln zu erhalten, Hormone stabil zu halten — und vor allem: <strong>durchzuhalten.</strong></p>
   </div>
 
@@ -404,18 +235,15 @@
   <p>Abnehmen ist kein Willensakt. Es ist ein System. Und ein gutes System funktioniert auch dann, wenn du müde bist, Stress hast, oder auf einer Geburtstagsfeier bist.</p>
 
   <p><strong>300 kcal weniger pro Tag ist ein System, das funktioniert. Weil es machbar ist.</strong></p>
-
-  <div class="cta-box">
-    <h3>Das komplette System im Buch</h3>
-    <p>Kalorienbedarf berechnen, Mahlzeiten optimieren, Meal Prep aufbauen — alles Schritt für Schritt erklärt.</p>
-    <a href="https://amazon.de/dp/B0GYBB4RN8" class="cta-btn" target="_blank">Jetzt auf Amazon kaufen →</a>
+<div class="cta-box">
+    <h3>Das komplette System – im Buch</h3>
+    <p>Schlaf, Stress, Ernährung und Training – alles aufeinander abgestimmt für nachhaltigen Gewichtsverlust.</p>
+    <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenzumle-21" class="cta-btn" target="_blank" rel="noopener">Jetzt auf Amazon ansehen →</a>
+    <a href="/1-wochen-plan.html" class="cta-btn secondary">7-Tage-Plan kostenlos</a>
   </div>
-
 </div>
-
 <footer>
-  <p>© 2026 David Rybka · <a href="index.html">abnehmen-zum-letzten-mal.de</a></p>
+  <p>© 2026 David Rybka · <a href="/">abnehmen-zum-letzten-mal.de</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></p>
 </footer>
-
 </body>
 </html>
