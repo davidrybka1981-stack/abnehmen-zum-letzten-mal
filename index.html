@@ -621,8 +621,9 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
     <div class="pill" style="background:rgba(255,241,231,.12);border-color:rgba(255,122,24,.4);color:#ffb071">✦ Kostenloser Download</div>
     <h2 style="margin-top:16px">Dein 7-Tage-Schnellstart.<br><em>Heute. Kostenlos.</em></h2>
     <p>Frühstücksideen mit 30g+ Protein. Zwei Meal-Prep-Rezepte. Einkaufsliste für die ganze Woche. Direkt in dein Postfach.</p>
-    <form class="email-form" onsubmit="handlePlan(event)">
-      <input type="email" placeholder="deine@email.de" id="planEmail" required>
+    <form class="email-form" method="post" action="https://flow.cleverreach.com/fl/a80e90ba-a87c-40b8-904e-be0077de1e99/confirm" target="_blank">
+      <input type="text" tabindex="-1" autocomplete="false" style="display:none !important" name="email_confirm">
+      <input type="email" placeholder="deine@email.de" name="email" required>
       <button type="submit" class="btn btn-orange" style="min-height:52px;font-size:15px;white-space:nowrap">Plan sichern →</button>
     </form>
     <div class="plan-features">
@@ -964,12 +965,8 @@ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
   calc();
 })();
 
-// PLAN FORM
-function handlePlan(e){
-  e.preventDefault();
-  const email=document.getElementById('planEmail').value;
-  window.location.href='/1-wochen-plan.html?email='+encodeURIComponent(email);
-}
+// PLAN FORM - handled by CleverReach
+
 </script>
 </body>
 </html>
