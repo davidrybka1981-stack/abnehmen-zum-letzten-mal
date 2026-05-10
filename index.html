@@ -197,7 +197,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(0,0,0,.92
 .trust{padding:40px 0;background:rgba(255,255,255,.9);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .trust-inner{width:min(100% - 40px,1280px);margin-inline:auto}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.tcard{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.45);border:1.5px solid rgba(0,0,0,.1);border-radius:22px;padding:16px;transition:.22s}
+.tcard{display:flex;align-items:center;gap:14px;background:#fff;border:1.5px solid rgba(244,90,5,.18);border-radius:22px;padding:16px;transition:.22s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .tcard:hover{transform:translateY(-4px)}
 .ticon{width:44px;height:44px;border-radius:14px;background:#fff;border:1px solid var(--border);display:grid;place-items:center;font-size:20px;flex-shrink:0}
 .tcard strong{display:block;font-weight:800;color:var(--stone)}
@@ -508,6 +508,7 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
       <a href="#autor">Autor</a>
     </nav>
     <div class="nav-cta">
+      <button onclick="cbToggle()" class="btn btn-ghost" style="font-size:13px;min-height:46px;gap:6px">💬 Chat</button>
       <a href="#plan" class="btn btn-ghost">7-Tage-Plan</a>
       <a href="#kaufen" class="btn btn-orange">Buch kaufen →</a>
     </div>
@@ -521,6 +522,7 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
     <a href="#blog" onclick="closeMob()">Blog</a>
     <a href="#empfehlungen" onclick="closeMob()">Empfehlungen</a>
     <a href="#autor" onclick="closeMob()">Autor</a>
+    <button onclick="closeMob();cbToggle();" style="margin-top:8px;background:#f45a05;color:#fff;border:none;border-radius:12px;padding:12px 0;font-size:15px;font-weight:800;cursor:pointer;width:100%;font-family:'DM Sans',sans-serif">💬 Chat mit dem Assistenten</button>
   </div>
 </header>
 
@@ -968,5 +970,222 @@ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 // PLAN FORM - handled by CleverReach
 
 </script>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHATBOT WIDGET – Abnehmen zum letzten Mal
+     API-Key hier eintragen:
+════════════════════════════════════════════════════════ -->
+<style>
+#cb-btn{position:fixed;bottom:24px;right:24px;z-index:9000;width:58px;height:58px;border-radius:50%;background:#f45a05;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(244,90,5,.45);display:flex;align-items:center;justify-content:center;transition:.22s;font-size:26px}
+#cb-btn:hover{transform:scale(1.08);background:#d94f05}
+#cb-badge{position:absolute;top:-4px;right:-4px;background:#fff;color:#f45a05;border-radius:50%;width:20px;height:20px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
+#cb-win{position:fixed;bottom:94px;right:24px;z-index:9000;width:360px;max-height:520px;background:#111;border:1px solid rgba(244,90,5,.3);border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.6);display:none;flex-direction:column;overflow:hidden;font-family:'DM Sans',sans-serif}
+#cb-win.open{display:flex}
+#cb-head{background:#f45a05;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+#cb-head-left{display:flex;align-items:center;gap:10px}
+#cb-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px}
+#cb-head-info strong{display:block;color:#fff;font-size:14px;font-weight:800}
+#cb-head-info span{color:rgba(255,255,255,.75);font-size:11px}
+#cb-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;opacity:.8;line-height:1;padding:2px 4px}
+#cb-close:hover{opacity:1}
+#cb-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:0}
+#cb-msgs::-webkit-scrollbar{width:4px}
+#cb-msgs::-webkit-scrollbar-track{background:transparent}
+#cb-msgs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
+.cb-msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.55}
+.cb-msg.bot{background:rgba(255,255,255,.07);color:rgba(255,255,255,.88);border-bottom-left-radius:4px;align-self:flex-start}
+.cb-msg.user{background:#f45a05;color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.cb-msg.typing{color:rgba(255,255,255,.4);font-style:italic}
+#cb-chips{padding:0 12px 10px;display:flex;flex-wrap:wrap;gap:6px}
+.cb-chip{background:rgba(244,90,5,.15);border:1px solid rgba(244,90,5,.4);color:#ffb071;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;transition:.18s;font-family:'DM Sans',sans-serif}
+.cb-chip:hover{background:rgba(244,90,5,.3);border-color:#f45a05}
+#cb-form{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.06)}
+#cb-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 14px;color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
+#cb-input:focus{border-color:rgba(244,90,5,.6)}
+#cb-input::placeholder{color:rgba(255,255,255,.3)}
+#cb-send{background:#f45a05;border:none;border-radius:10px;width:38px;height:38px;cursor:pointer;color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.18s;flex-shrink:0}
+#cb-send:hover{background:#d94f05}
+#cb-send:disabled{opacity:.4;cursor:default}
+#cb-disclaimer{font-size:10px;color:rgba(255,255,255,.2);text-align:center;padding:0 12px 10px;line-height:1.5}
+@media(max-width:480px){#cb-win{width:calc(100vw - 24px);right:12px;bottom:88px}}
+</style>
+
+<!-- Floating Button -->
+<button id="cb-btn" onclick="cbToggle()" aria-label="Chat öffnen">
+  💬
+  <div id="cb-badge">1</div>
+</button>
+
+<!-- Chat Window -->
+<div id="cb-win">
+  <div id="cb-head">
+    <div id="cb-head-left">
+      <div id="cb-avatar">🥗</div>
+      <div id="cb-head-info">
+        <strong>David's Ernährungs-Assistent</strong>
+        <span>Frag mich alles zum Plan</span>
+      </div>
+    </div>
+    <button id="cb-close" onclick="cbToggle()">✕</button>
+  </div>
+  <div id="cb-msgs">
+    <div class="cb-msg bot">Hey! Ich kenne das Buch und den 7-Tage-Plan in- und auswendig. Was möchtest du wissen? 💪</div>
+  </div>
+  <div id="cb-chips">
+    <button class="cb-chip" onclick="cbChip(this)">Wie viel Protein brauche ich?</button>
+    <button class="cb-chip" onclick="cbChip(this)">Was esse ich zum Frühstück?</button>
+    <button class="cb-chip" onclick="cbChip(this)">Wie groß sollte mein Defizit sein?</button>
+    <button class="cb-chip" onclick="cbChip(this)">Meal Prep für Mo–Do?</button>
+  </div>
+  <form id="cb-form" onsubmit="cbSend(event)">
+    <input id="cb-input" type="text" placeholder="Deine Frage..." autocomplete="off">
+    <button id="cb-send" type="submit">➤</button>
+  </form>
+  <div id="cb-disclaimer">KI-Assistent · Kein medizinischer Rat · <a href="/datenschutz.html" style="color:rgba(255,255,255,.3)">Datenschutz</a></div>
+  <div id="cb-counter" style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;padding:0 12px 8px">Noch 3 Fragen kostenlos</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// KONFIGURATION – nur diese Zeile anpassen
+// WICHTIG: Nach dem Vercel-Import diese URL durch deine echte Vercel-URL ersetzen.
+const CB_PROXY_URL = 'https://DEIN-VERCEL-PROJEKT.vercel.app/api/chat';
+// ═══════════════════════════════════════════════
+
+const CB_SYSTEM = `Du bist der freundliche Ernährungs-Assistent von David Rybka, Autor von "Abnehmen zum letzten Mal". Du kennst das Buch und den 7-Tage-Plan vollständig. Antworte immer auf Deutsch, kurz (max. 3 Sätze), motivierend und auf Basis des folgenden Wissens. Erfinde nichts. Wenn etwas nicht im Plan steht, sag das kurz und empfiehl das Buch.
+
+=== DAVIDS SYSTEM ===
+Grundprinzip: Kaloriendefizit 300–500 kcal/Tag + mind. 1,6–2g Protein/kg Körpergewicht. Kein Verbot, kein Gym-Zwang.
+Schritte: 1. Ist-Zustand aufnehmen (wiegen, messen). 2. Kalorienbedarf berechnen (Kalorienrechner auf der Seite). 3. Defizit festlegen (300–500 kcal). 4. Protein priorisieren (1,6–2g/kg). 5. Schritte erhöhen: aktueller Schnitt +5000, Ziel 10.000/Tag, nicht über 12.000 nötig.
+Warum Gehen statt Joggen: Bei Übergewicht belastet Joggen Gelenke und löst Kompensationshunger aus. Gehen hält Kalorienverbrauch erhöht ohne Gegensteuern. Wer Sport macht: weitermachen, Gehen zusätzlich.
+Wasser: mind. 2–3 Liter täglich, großes Glas vor jeder Mahlzeit.
+Morgenroutine David: Proteinshake + Chiasamen + Flohsamenschalen statt Frühstück. Alternatives Frühstück möglich – Kalorien/Protein im Blick behalten.
+Obst: 2–3 Portionen täglich einplanen, passt gut als Snack/Abendessen.
+
+=== FRÜHSTÜCK (alle ~350 kcal, ~24g Protein) ===
+Basis: 200g Skyr oder Magerquark + 30g Haferflocken + 1 TL Leinöl + Chiasamen oder Flohsamenschalen + Frucht.
+Mo: Heidelbeere/Chia | Di: Erdbeere/Banane | Mi: Schokolade/Kirsche (Magerquark+Kakao) | Do: Apfel/Zimt | Fr: Mango/Kokos | Sa: Himbeer/Vanille (Magerquark) | So: Banane/Erdnussmus (~370 kcal, ~25g P)
+
+=== MITTAGESSEN ===
+MO–DO Meal Prep (4 Portionen, Sonntag kochen): Tatar-Bolognese mit Proteinnudeln. 560 kcal, 68g P, 48g KH, 13g F.
+Zutaten: 800g Rindertatar, 250g Proteinnudeln (ungekocht), 2 Zucchini, 100g Blattspinat, 2 Zwiebeln, 2 Knoblauchzehen, 500g passierte Tomaten, 700ml Wasser, 4 EL Tomatenmark, Gemüsebrühe, Gewürze.
+Trick: Nudeln UNGEKOCHT direkt in Sauce, Deckel drauf mitkochen. Spinat kurz vor Ende.
+
+FREITAG: Hähnchen-Geschnetzeltes mit Pilzen & Spätzle. 545 kcal, 57g P, 34g KH, 16g F.
+250g Hähnchenbrust (in Würfel) aus 400g Packung, 100g Spätzle frisch, 150g Champignons, 50g Zwiebel, 150ml Kochcreme 7%, 100ml Gemüsebrühe.
+Wichtig: Die restlichen 150g Hähnchen separat würfeln, garen und kalt stellen → für Sonntag.
+
+SAMSTAG: Hüftsteak vom Grill + Gemüse + Maiskolben. ~450 kcal, 56g P, 18g KH, 14g F.
+200g Hüftsteak, Zucchini, Paprika, 100g Champignons, 1 Maiskolben.
+
+SONNTAG: Crunchy Gnocchi-Hähnchen Salat (Airfryer). ~610 kcal, 51g P, 63g KH, 10g F.
+200g Gnocchi frisch + Ölspray + Salz → Airfryer 200°C 20 Min (kein Vorheizen). Ab Minute 15: 150g gegarte Hähnchenwürfel (vom Freitag!) dazu. Dressing: 100g Griechischer Joghurt 2%, 20g Miracle Whip Balance, 15g Senf, ¼ Zitrone, Knoblauch-/Zwiebelgewürz, Schnittlauch. Gurke+Zwiebel+Essiggurken würfeln dazu.
+
+Abendessen: Bewusst offen – nach verbleibendem Tageskalorienbudget. Obst + proteinreiche Snacks empfohlen.
+
+=== EINKAUFSLISTE WOCHE ===
+Fleisch: 800g Rindertatar, 400g Hähnchenbrust (250g Fr+150g So), 200g Hüftsteak.
+Nudeln/Beilagen: 250g Proteinnudeln, 100g Spätzle frisch, 200g Gnocchi frisch.
+Gemüse: 3 Zucchini, 100g Blattspinat, 3 Zwiebeln, 2 Knoblauch, 250g Champignons, 1 Paprika, 1 Maiskolben, 1 Gurke, 1 rote Zwiebel, Essiggurken.
+Molkerei/Sauce: 500g passierte Tomaten, Tomatenmark, 150ml Kochcreme 7%, 100g Griechischer Joghurt 2%, Miracle Whip Balance, Senf, 1 Zitrone.
+Frühstück: 1400g Skyr/Magerquark, 210g Haferflocken, Chiasamen, Flohsamenschalen, Leinöl, Erdnussmus, Kokosflocken, Kakaopulver, Zimt, Vanille-Aroma. Obst TK: Heidelbeeren, Kirschen, Mango, Himbeeren. Frisch: Erdbeeren, Äpfel, 3 Bananen.
+
+=== BUCH ===
+Titel: "Abnehmen zum letzten Mal" von David Rybka. Kindle €5,99, Paperback €12,99 auf Amazon. David hat jahrelang Diäten im hohen Defizit gemacht → gescheitert, meist Muskeln/Wasser verloren. Dieses System basiert auf Büchern, Blogs, Selbstexperiment. Ergebnis: 7 kg abgenommen. Enthält 8 Meal-Prep-Rezepte, 8-Wochen-Plan, Einkaufslisten, Grundlagen-Kapitel.`;
+
+let cbOpen=false, cbHistory=[], cbTyping=false, cbCount=0;
+const CB_LIMIT=3;
+
+function cbToggle(){
+  cbOpen=!cbOpen;
+  document.getElementById('cb-win').classList.toggle('open',cbOpen);
+  document.getElementById('cb-badge').style.display='none';
+  if(cbOpen) document.getElementById('cb-input').focus();
+}
+
+function cbChip(el){
+  document.getElementById('cb-input').value=el.textContent;
+  document.getElementById('cb-chips').style.display='none';
+  cbSend(null);
+}
+
+function cbAddMsg(text,role){
+  const d=document.getElementById('cb-msgs');
+  const m=document.createElement('div');
+  m.className='cb-msg '+(role==='user'?'user':'bot');
+  m.textContent=text;
+  d.appendChild(m);
+  d.scrollTop=d.scrollHeight;
+  return m;
+}
+
+async function cbSend(e){
+  if(e) e.preventDefault();
+  if(cbTyping) return;
+  const inp=document.getElementById('cb-input');
+  const text=inp.value.trim();
+  if(!text) return;
+
+  // Limit reached
+  if(cbCount>=CB_LIMIT){
+    inp.value='';
+    const d=document.getElementById('cb-msgs');
+    const m=document.createElement('div');
+    m.className='cb-msg bot';
+    m.innerHTML='Du hast deine 3 kostenlosen Fragen genutzt 🎉<br><br>Alle Antworten, Rezepte und den vollständigen Plan findest du im Buch:<br><a href="https://www.amazon.de/dp/B0GYBB4RN8" target="_blank" style="color:#f45a05;font-weight:800">→ Jetzt auf Amazon kaufen</a>';
+    d.appendChild(m);
+    d.scrollTop=d.scrollHeight;
+    document.getElementById('cb-input').disabled=true;
+    document.getElementById('cb-send').disabled=true;
+    return;
+  }
+
+  inp.value='';
+  document.getElementById('cb-chips').style.display='none';
+  document.getElementById('cb-send').disabled=true;
+  cbTyping=true;
+  cbCount++;
+
+  // Update counter display
+  const rem=CB_LIMIT-cbCount;
+  const counter=document.getElementById('cb-counter');
+  if(counter) counter.textContent=rem>0?`Noch ${rem} Frage${rem===1?'':'n'} kostenlos`:'';
+
+  cbAddMsg(text,'user');
+  cbHistory.push({role:'user',content:text});
+
+  const typing=cbAddMsg('…','bot');
+  typing.classList.add('typing');
+
+  try{
+    const res=await fetch(CB_PROXY_URL,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        max_tokens:350,
+        system:CB_SYSTEM,
+        messages:cbHistory.slice(-6)
+      })
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'Entschuldigung, das hat nicht geklappt. Versuch es nochmal.';
+    typing.textContent=reply;
+    typing.classList.remove('typing');
+    cbHistory.push({role:'assistant',content:reply});
+  }catch(err){
+    typing.textContent='Verbindungsfehler – bitte nochmal versuchen.';
+    typing.classList.remove('typing');
+    cbCount--; // don't count failed requests
+  }
+
+  cbTyping=false;
+  document.getElementById('cb-send').disabled=false;
+  document.getElementById('cb-input').focus();
+}
+</script>
+<!-- ═══════════════════════════════ CHATBOT ENDE ══════════ -->
+
 </body>
 </html>
