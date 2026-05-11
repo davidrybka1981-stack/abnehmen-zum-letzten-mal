@@ -1054,7 +1054,7 @@ const CB_PROXY_URL = 'https://abnehmen-zum-letzten-mal.vercel.app/api/chat';
 
 const CB_SYSTEM = `Du bist der Ernährungs-Assistent auf der Website von David Rybka, Autor von "Abnehmen zum letzten Mal". Du kannst Fragen zum 7-Tage-Plan, zum Buch und zu Davids System beantworten.
 
-TONALITÄT: Antworte auf Deutsch. Direkt, alltagstauglich, ehrlich, ruhig motivierend – aber ohne Übertreibung oder Werbeton. Meist 3–6 kurze Sätze, bei konkreten Rezept- oder Listenfragen auch kurze Aufzählungen. Nie künstlich aufmunternd. Verweise aufs Buch nur wenn es wirklich passt, nicht nach jeder Antwort.
+TONALITÄT: Antworte auf Deutsch. Direkt, alltagstauglich, ehrlich, ruhig – kein Werbeton. Maximal 4 kurze Sätze oder eine kurze Liste. Nur das Wesentliche, keine Wiederholungen. Buch-Verweis nur wenn wirklich passend.
 
 MEDIZINISCHE GRENZEN: Bei Fragen zu Krankheiten, Medikamenten, Essstörungen, Schwangerschaft, Stillzeit, starkem Übergewicht (BMI >40) oder körperlichen Beschwerden: Gib keine individuelle medizinische Beratung. Sag freundlich, dass das mit einem Arzt besprochen werden sollte. Allgemeine Informationen darfst du geben, aber keine persönlichen Empfehlungen in diesen Fällen.
 
@@ -1158,8 +1158,10 @@ Kindle: €5,99 | Paperback: €12,99 | Amazon Deutschland.
 Inhalt: 8 Meal-Prep-Rezepte mit Makros, 8-Wochen-Plan, Einkaufslisten, Grundlagen zu Kaloriendefizit, Protein, Bewegung und Psychologie des Abnehmens.
 Kostenloser 7-Tage-Plan: Auf der Website gegen E-Mail-Anmeldung erhältlich.`;
 
-let cbOpen=false, cbHistory=[], cbTyping=false, cbCount=0;
+let cbOpen=false, cbHistory=[], cbTyping=false, cbCount=0, cbUnlocked=false;
 const CB_LIMIT=3;
+// Buchcodes – diese im Buch abdrucken
+const CB_CODES=['ABZLM-2024','ABZLM-2025','ABZLM-DAVID','ABZLM-PLAN7','ABZLM-PRO'];
 
 function cbToggle(){
   cbOpen=!cbOpen;
@@ -1192,16 +1194,43 @@ async function cbSend(e){
   if(!text) return;
 
   // Limit reached
-  if(cbCount>=CB_LIMIT){
+  if(cbCount>=CB_LIMIT && !cbUnlocked){
     inp.value='';
+    // Check if input looks like a code attempt
+    if(text.toUpperCase().startsWith('ABZLM') || CB_CODES.includes(text.toUpperCase())){
+      if(CB_CODES.includes(text.toUpperCase())){
+        cbUnlocked=true;
+        document.getElementById('cb-input').disabled=false;
+        document.getElementById('cb-send').disabled=false;
+        const d=document.getElementById('cb-msgs');
+        const m=document.createElement('div');
+        m.className='cb-msg bot';
+        m.textContent='Code akzeptiert ✓ Du hast jetzt unbegrenzten Zugang. Frag mich alles!';
+        d.appendChild(m); d.scrollTop=d.scrollHeight;
+        const counter=document.getElementById('cb-counter');
+        if(counter) counter.textContent='Unbegrenzter Zugang aktiv';
+      } else {
+        const d=document.getElementById('cb-msgs');
+        const m=document.createElement('div');
+        m.className='cb-msg bot';
+        m.textContent='Dieser Code ist leider nicht gültig. Prüfe die Schreibweise oder hol dir das Buch für deinen persönlichen Code.';
+        d.appendChild(m); d.scrollTop=d.scrollHeight;
+      }
+      return;
+    }
+    // Show limit message with code hint
     const d=document.getElementById('cb-msgs');
+    // Only show once
+    if(document.getElementById('cb-limit-msg')) return;
     const m=document.createElement('div');
+    m.id='cb-limit-msg';
     m.className='cb-msg bot';
-    m.innerHTML='Du hast deine 3 kostenlosen Fragen genutzt.<br><br>Wenn du tiefer einsteigen willst, findest du den vollständigen Plan, alle Rezepte und die genaue Schritt-für-Schritt-Anleitung im Buch – oder hol dir den kostenlosen 7-Tage-Plan auf dieser Seite.<br><br><a href="https://www.amazon.de/dp/B0GYBB4RN8" target="_blank" style="color:#f45a05;font-weight:800">→ Buch auf Amazon ansehen</a>';
+    m.innerHTML='Du hast deine 3 kostenlosen Fragen genutzt.<br><br>Buchkäufer haben unbegrenzten Zugang – gib einfach deinen persönlichen Code aus dem Buch hier ein.<br><br>Noch kein Buch? Den vollständigen Plan, alle Rezepte und die Schritt-für-Schritt-Anleitung findest du hier:<br><a href="https://www.amazon.de/dp/B0GYBB4RN8" target="_blank" style="color:#f45a05;font-weight:800">→ Buch auf Amazon ansehen</a>';
     d.appendChild(m);
     d.scrollTop=d.scrollHeight;
-    document.getElementById('cb-input').disabled=true;
-    document.getElementById('cb-send').disabled=true;
+    document.getElementById('cb-input').disabled=false;
+    document.getElementById('cb-input').placeholder='Buchcode eingeben...';
+    document.getElementById('cb-send').disabled=false;
     return;
   }
 
