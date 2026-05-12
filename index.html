@@ -1172,7 +1172,10 @@ function cbToggle(){
   cbOpen=!cbOpen;
   document.getElementById('cb-win').classList.toggle('open',cbOpen);
   document.getElementById('cb-badge').style.display='none';
-  if(cbOpen) document.getElementById('cb-input').focus();
+  if(cbOpen){
+    document.getElementById('cb-input').focus();
+    gtag('event','chatbot_opened',{event_category:'Chatbot',event_label:'Chat geöffnet'});
+  }
 }
 
 function cbChip(el){
@@ -1200,11 +1203,13 @@ async function cbSend(e){
 
   // Limit reached
   if(cbCount>=CB_LIMIT && !cbUnlocked){
+    gtag('event','chatbot_limit_reached',{event_category:'Chatbot',event_label:'3 Fragen Limit erreicht'});
     inp.value='';
     // Check if input looks like a code attempt
     if(text.toUpperCase().startsWith('ABZLM') || CB_CODES.includes(text.toUpperCase())){
       if(CB_CODES.includes(text.toUpperCase())){
         cbUnlocked=true;
+        gtag('event','chatbot_code_unlocked',{event_category:'Chatbot',event_label:'Buchcode eingelöst'});
         document.getElementById('cb-input').disabled=false;
         document.getElementById('cb-send').disabled=false;
         const d=document.getElementById('cb-msgs');
@@ -1244,6 +1249,8 @@ async function cbSend(e){
   document.getElementById('cb-send').disabled=true;
   cbTyping=true;
   cbCount++;
+  if(cbCount===1) gtag('event','chatbot_first_message',{event_category:'Chatbot',event_label:'Erste Frage gestellt'});
+  gtag('event','chatbot_message_sent',{event_category:'Chatbot',event_label:'Frage '+cbCount});
 
   // Update counter display
   const rem=CB_LIMIT-cbCount;
