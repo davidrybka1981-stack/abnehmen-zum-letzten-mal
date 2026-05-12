@@ -74,7 +74,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(0,0,0,.92
 .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,122,24,.5);background:rgba(244,90,5,.1);color:#ffb071;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .stars{color:#f97316;letter-spacing:2px}
 .rating-txt{font-size:13px;color:rgba(255,255,255,.6)}
-.hero h1{margin:24px 0 0;font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,8vw,110px);line-height:.88;letter-spacing:-.02em;text-transform:uppercase}
+.hero h1{margin:24px 0 0;font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,8vw,110px);line-height:.88;letter-spacing:.01em;text-transform:uppercase}
 .hero h1 em{color:var(--o);font-style:normal}
 .hero-lead{margin:24px 0 0;font-size:clamp(17px,1.8vw,22px);line-height:1.55;color:#d6d3d1;max-width:600px;font-weight:500}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
@@ -86,7 +86,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(0,0,0,.92
 
 /* ── 3D BOOK ── */
 .book-scene{
-  perspective:1200px;
+  perspective:900px;
   width:100%;max-width:360px;margin:0 auto;
 }
 .book-link{display:block;text-decoration:none}
@@ -94,50 +94,54 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(0,0,0,.92
   position:relative;
   transform-style:preserve-3d;
   transition:transform .6s cubic-bezier(.23,1,.32,1);
-  transform:rotateY(-22deg) rotateX(5deg);
+  transform:rotateY(-28deg) rotateX(6deg) translateY(-8px);
   width:100%;
+  filter:drop-shadow(-20px 30px 40px rgba(0,0,0,.7));
 }
 .book-scene:hover .book-3d{
-  transform:rotateY(-6deg) rotateX(2deg) translateY(-10px);
+  transform:rotateY(-8deg) rotateX(2deg) translateY(-16px);
+  filter:drop-shadow(-10px 40px 50px rgba(0,0,0,.6));
 }
 /* Shadow beneath book */
 .book-3d::after{
   content:'';position:absolute;
-  bottom:-28px;left:5%;right:15%;height:40px;
-  background:radial-gradient(ellipse,rgba(0,0,0,.55) 0%,transparent 70%);
-  filter:blur(10px);
-  transform:translateZ(-60px);
+  bottom:-32px;left:8%;right:10%;height:48px;
+  background:radial-gradient(ellipse,rgba(0,0,0,.7) 0%,transparent 70%);
+  filter:blur(14px);
+  transform:translateZ(-80px) scaleX(1.1);
   z-index:-1;
 }
 /* Front face */
 .book-face{
   background:#0a0a0a;
   border-radius:4px 18px 18px 4px;
-  border-top:1px solid rgba(255,122,24,.6);
-  border-right:1px solid rgba(255,122,24,.6);
-  border-bottom:1px solid rgba(255,122,24,.6);
-  border-left:3px solid rgba(255,122,24,.8);
-  padding:26px 24px;
-  box-shadow:0 40px 80px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);
+  border-left:4px solid rgba(255,122,24,.9);
+  padding:0;
+  box-shadow:
+    0 50px 100px rgba(0,0,0,.8),
+    0 20px 40px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(255,255,255,.1),
+    inset -4px 0 20px rgba(0,0,0,.3);
   overflow:hidden;
   position:relative;
 }
 /* Inner light reflection on front */
 .book-face::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,rgba(255,255,255,.07) 0%,transparent 40%);
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(130deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,.03) 25%,transparent 50%);
   pointer-events:none;
+  border-radius:0 14px 14px 0;
 }
 /* Spine - real 3D plane */
 .book-spine{
   position:absolute;
   left:0;top:0;bottom:0;
   width:32px;
-  background:linear-gradient(180deg,#e04800,#f45a05 40%,#c94400 80%,#a83800);
+  background:linear-gradient(180deg,#ff6b1a,#f45a05 30%,#d04800 70%,#a83800);
   transform:rotateY(-90deg) translateZ(0px);
   transform-origin:right center;
   border-radius:4px 0 0 4px;
-  box-shadow:-4px 0 16px rgba(0,0,0,.5);
+  box-shadow:-6px 0 20px rgba(0,0,0,.6),inset 2px 0 8px rgba(255,255,255,.1);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
@@ -146,7 +150,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(0,0,0,.92
   writing-mode:vertical-rl;
   transform:rotate(180deg);
   font-size:9px;letter-spacing:.22em;font-weight:900;
-  color:rgba(255,255,255,.7);font-family:'DM Sans',sans-serif;
+  color:rgba(255,255,255,.8);font-family:'DM Sans',sans-serif;
   text-transform:uppercase;
 }
 /* Page edges illusion - right side */
@@ -552,21 +556,7 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
       <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenzumle-21" class="book-link" target="_blank" rel="noopener" aria-label="Buch auf Amazon kaufen">
       <div class="book-3d">
         <div class="book-face">
-          <div class="book-top-bar">Ernährung · Meal Prep · Alltag</div>
-          <div class="book-title">
-            <div class="btbig">Abnehmen</div>
-            <div class="btmid">zum</div>
-            <div class="btbot">Letzten Mal</div>
-          </div>
-          <div class="book-sub">Der ehrliche Ratgeber für Berufstätige und Eltern</div>
-          <div class="book-badges">
-            <div class="book-badge">✓ Fett verlieren, nicht Muskeln!</div>
-            <div class="book-badge">✓ Strategie statt Willenskraft!</div>
-            <div class="book-badge">✓ Kein Hungern und trotzdem abnehmen!</div>
-          </div>
-          <div class="book-mini">8 Rezepte · 8-Wochen-Plan · Einkaufslisten</div>
-          <div class="book-author-lbl">Autor</div>
-          <div class="book-author">David Rybka</div>
+          <img src="/cover-front.jpg" alt="Abnehmen zum letzten Mal – Buchcover" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 14px 14px 0;">
           <div class="book-hover-cta">
             <span>📚 Jetzt auf Amazon</span>
             <small>Taschenbuch 12,99€ · Kindle 5,99€</small>
@@ -1059,7 +1049,7 @@ const CB_PROXY_URL = 'https://abnehmen-zum-letzten-mal.vercel.app/api/chat';
 
 const CB_SYSTEM = `Du bist der Ernährungs-Assistent auf der Website von David Rybka, Autor von "Abnehmen zum letzten Mal". Du kannst Fragen zum 7-Tage-Plan, zum Buch und zu Davids System beantworten.
 
-TONALITÄT: Antworte auf Deutsch. Direkt, alltagstauglich, ehrlich, ruhig – kein Werbeton. Maximal 4 kurze Sätze oder eine kurze Liste. Nur das Wesentliche, keine Wiederholungen. Buch-Verweis nur wenn wirklich passend. WICHTIG: Kein Markdown – keine Sternchen für fett, keine **, kein #, keine Aufzählungszeichen mit *. Nur normalen Fließtext.
+TONALITÄT: Antworte auf Deutsch. Direkt, alltagstauglich, ehrlich, ruhig – kein Werbeton. Maximal 4 kurze Sätze oder eine kurze Liste. Nur das Wesentliche, keine Wiederholungen. Buch-Verweis nur wenn wirklich passend.
 
 MEDIZINISCHE GRENZEN: Bei Fragen zu Krankheiten, Medikamenten, Essstörungen, Schwangerschaft, Stillzeit, starkem Übergewicht (BMI >40) oder körperlichen Beschwerden: Gib keine individuelle medizinische Beratung. Sag freundlich, dass das mit einem Arzt besprochen werden sollte. Allgemeine Informationen darfst du geben, aber keine persönlichen Empfehlungen in diesen Fällen.
 
@@ -1172,10 +1162,7 @@ function cbToggle(){
   cbOpen=!cbOpen;
   document.getElementById('cb-win').classList.toggle('open',cbOpen);
   document.getElementById('cb-badge').style.display='none';
-  if(cbOpen){
-    document.getElementById('cb-input').focus();
-    gtag('event','chatbot_opened',{event_category:'Chatbot',event_label:'Chat geöffnet'});
-  }
+  if(cbOpen) document.getElementById('cb-input').focus();
 }
 
 function cbChip(el){
@@ -1203,13 +1190,11 @@ async function cbSend(e){
 
   // Limit reached
   if(cbCount>=CB_LIMIT && !cbUnlocked){
-    gtag('event','chatbot_limit_reached',{event_category:'Chatbot',event_label:'3 Fragen Limit erreicht'});
     inp.value='';
     // Check if input looks like a code attempt
     if(text.toUpperCase().startsWith('ABZLM') || CB_CODES.includes(text.toUpperCase())){
       if(CB_CODES.includes(text.toUpperCase())){
         cbUnlocked=true;
-        gtag('event','chatbot_code_unlocked',{event_category:'Chatbot',event_label:'Buchcode eingelöst'});
         document.getElementById('cb-input').disabled=false;
         document.getElementById('cb-send').disabled=false;
         const d=document.getElementById('cb-msgs');
@@ -1249,8 +1234,6 @@ async function cbSend(e){
   document.getElementById('cb-send').disabled=true;
   cbTyping=true;
   cbCount++;
-  if(cbCount===1) gtag('event','chatbot_first_message',{event_category:'Chatbot',event_label:'Erste Frage gestellt'});
-  gtag('event','chatbot_message_sent',{event_category:'Chatbot',event_label:'Frage '+cbCount});
 
   // Update counter display
   const rem=CB_LIMIT-cbCount;
