@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TYE4LEN3MG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TYE4LEN3MG');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kostenloser Gewichtstracker – Offline & DSGVO-konform | Abnehmen zum letzten Mal</title>
+<meta name="description" content="Gratis Offline-Gewichtstracker als HTML-Datei. Täglich eintragen, 7-Tage-Trend sehen, keine App, kein Login, keine Daten werden übertragen.">
+<link rel="canonical" href="https://abnehmen-zum-letzten-mal.de/tools/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root{
+  --o:#f45a05;--o2:#ff7a18;--os:#fff1e7;
+  --cream:#f8f2e8;--cream2:#fff7ed;--csoft:#efe6da;
+  --stone:#11100f;--stone2:#1c1917;--muted:#66615b;
+  --border:#ffc08f;--white:#ffffff;
+  --shadow:0 24px 80px rgba(41,37,36,.10);
+  --r:28px;--r-sm:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--stone);background:var(--cream);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ── NAV ── */
+header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(0,0,0,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(244,90,5,.2)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(100% - 40px,1280px);margin-inline:auto}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:40px;height:40px;border-radius:14px;background:var(--o);display:grid;place-items:center;font-size:20px;flex-shrink:0;box-shadow:0 8px 24px rgba(244,90,5,.3)}
+.brand strong{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#fff;font-weight:800}
+.brand span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#ff9b52;font-weight:700;display:block;margin-top:-2px}
+.navlinks{display:flex;align-items:center;gap:28px}
+.navlinks a{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);transition:.18s;letter-spacing:.04em}
+.navlinks a:hover,.navlinks a.active{color:#ff9b52}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border-radius:14px;padding:0 22px;font-weight:800;font-size:14px;cursor:pointer;transition:.22s ease;border:1px solid transparent;font-family:'DM Sans',sans-serif}
+.btn-orange{background:var(--o);color:#fff;box-shadow:0 12px 30px rgba(244,90,5,.25)}
+.btn-orange:hover{background:#d94f05;transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(244,90,5,.6);color:#fff}
+.btn-ghost:hover{background:rgba(244,90,5,.15);border-color:rgba(244,90,5,.9)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-nav{display:none;background:#000;border-top:1px solid rgba(244,90,5,.2);padding:20px}
+.mobile-nav.open{display:flex;flex-direction:column;gap:4px}
+.mobile-nav a{padding:12px 0;font-size:15px;font-weight:700;color:rgba(255,255,255,.8);border-bottom:1px solid rgba(255,255,255,.05)}
+
+/* ── HERO ── */
+.hero{min-height:70vh;background:#000;color:#fff;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 18% 18%,rgba(249,115,22,.22),transparent 30%),radial-gradient(circle at 82% 20%,rgba(249,115,22,.14),transparent 24%),linear-gradient(180deg,#000 0%,#11100f 60%,#1c120c 100%)}
+.hero::after{content:'';position:absolute;inset:0;opacity:.07;background-image:linear-gradient(90deg,#fff 1px,transparent 1px),linear-gradient(#fff 1px,transparent 1px);background-size:48px 48px}
+.hero-inner{position:relative;z-index:1;width:min(100% - 40px,1100px);margin-inline:auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,122,24,.5);background:rgba(244,90,5,.1);color:#ffb071;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,7vw,96px);line-height:.9;letter-spacing:.01em;text-transform:uppercase;margin-bottom:24px}
+.hero h1 em{color:var(--o);font-style:normal}
+.hero-lead{font-size:clamp(16px,1.6vw,20px);line-height:1.6;color:#d6d3d1;max-width:560px;font-weight:500;margin-bottom:32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Preview card */
+.preview-wrap{flex-shrink:0;width:240px}
+.preview-card{background:#111;border:1px solid rgba(244,90,5,.3);border-radius:20px;padding:22px;color:#fff}
+.p-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#888;font-weight:700;margin-bottom:14px}
+.preview-bars{display:flex;align-items:flex-end;gap:6px;height:64px;margin-bottom:14px}
+.preview-bars span{flex:1;background:#2a2a2a;border-radius:3px}
+.preview-bars span.hi{background:var(--o)}
+.preview-trend{color:#4ade80;font-weight:800;font-size:15px}
+.preview-trend::before{content:"↓ "}
+
+/* ── FEATURES ── */
+.features{padding:80px 0;background:var(--cream)}
+.feat-inner{width:min(100% - 40px,1100px);margin-inline:auto}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--os);color:#c2410c;border-radius:999px;padding:6px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.22em;font-weight:900;margin-bottom:16px}
+.feat-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.01em;margin-bottom:48px}
+.feat-inner h2 em{color:var(--o);font-style:normal}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.feat{background:#fff;border:1.5px solid rgba(244,90,5,.15);border-radius:24px;padding:28px 24px;transition:.22s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.feat:hover{transform:translateY(-4px);border-color:var(--o)}
+.feat-icon{width:48px;height:48px;background:var(--os);border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:16px}
+.feat h3{font-size:17px;font-weight:800;margin-bottom:8px;color:var(--stone)}
+.feat p{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* ── STEPS ── */
+.steps-section{padding:80px 0;background:#fff}
+.steps-inner{width:min(100% - 40px,1100px);margin-inline:auto}
+.steps-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);line-height:1;margin-bottom:48px}
+.steps-inner h2 em{color:var(--o);font-style:normal}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step-num{width:44px;height:44px;border-radius:50%;background:var(--o);color:#fff;font-weight:900;font-size:18px;display:grid;place-items:center;flex-shrink:0;font-family:'Bebas Neue',sans-serif;box-shadow:0 8px 20px rgba(244,90,5,.3)}
+.step h4{font-size:16px;font-weight:800;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ── CTA BAND ── */
+.cta-band{background:#000;padding:80px 20px;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(244,90,5,.2),transparent 60%)}
+.cta-band h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);color:#fff;margin-bottom:12px;position:relative}
+.cta-band h2 em{color:var(--o);font-style:normal}
+.cta-band p{color:#888;font-size:16px;margin-bottom:32px;position:relative}
+.cta-note{margin-top:16px;font-size:12px;color:#555;position:relative}
+
+/* ── FOOTER ── */
+footer{background:#0a0a0a;border-top:1px solid rgba(244,90,5,.2);padding:40px 20px}
+.footer-inner{width:min(100%,1280px);margin-inline:auto}
+.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:16px}
+.footer-logo{font-size:14px;font-weight:800;color:#fff;letter-spacing:.06em;text-transform:uppercase}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:#666;font-weight:600}
+.footer-links a:hover{color:var(--o)}
+.footer-disclaimer{font-size:12px;color:#444;line-height:1.7}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr}
+  .preview-wrap{display:none}
+  .navlinks{display:none}
+  .hamburger{display:flex}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand">
+      <div class="brand-mark">🔥</div>
+      <div><strong>Abnehmen</strong><span>zum letzten Mal</span></div>
+    </a>
+    <nav class="navlinks">
+      <a href="/#story">Geschichte</a>
+      <a href="/#buch">Das Buch</a>
+      <a href="/#plan">7-Tage-Plan</a>
+      <a href="/#rechner">Rechner</a>
+      <a href="/#blog">Blog</a>
+      <a href="/#empfehlungen">Empfehlungen</a>
+      <a href="/#autor">Autor</a>
+      <a href="/tools/" class="active">Tools</a>
+    </nav>
+    <div style="display:flex;gap:10px">
+      <a href="/#kaufen" class="btn btn-orange" style="font-size:13px">Buch kaufen →</a>
+    </div>
+    <button class="hamburger" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mobNav">
+    <a href="/#story" onclick="closeMob()">Geschichte</a>
+    <a href="/#buch" onclick="closeMob()">Das Buch</a>
+    <a href="/#plan" onclick="closeMob()">7-Tage-Plan</a>
+    <a href="/#rechner" onclick="closeMob()">Rechner</a>
+    <a href="/#blog" onclick="closeMob()">Blog</a>
+    <a href="/#empfehlungen" onclick="closeMob()">Empfehlungen</a>
+    <a href="/#autor" onclick="closeMob()">Autor</a>
+    <a href="/tools/" onclick="closeMob()">Tools</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">✦ Kostenloses Tool</div>
+      <h1>Dein<br><em>Gewichts-</em><br>tracker.</h1>
+      <p class="hero-lead">Einmal herunterladen, für immer lokal nutzen. Kein Login, keine App, keine Daten in der Cloud. Dein Gewichtsverlauf bleibt bei dir.</p>
+      <div class="hero-actions">
+        <a href="gewichtstracker.html" download="gewichtstracker.html" class="btn btn-orange" style="font-size:15px;padding:0 28px;min-height:52px">
+          ↓ Jetzt kostenlos herunterladen
+        </a>
+      </div>
+    </div>
+    <div class="preview-wrap">
+      <div class="preview-card">
+        <div class="p-label">7-Tage-Verlauf</div>
+        <div class="preview-bars">
+          <span style="height:72%"></span>
+          <span style="height:76%"></span>
+          <span style="height:69%"></span>
+          <span style="height:73%"></span>
+          <span style="height:65%"></span>
+          <span style="height:61%"></span>
+          <span class="hi" style="height:57%"></span>
+        </div>
+        <div class="preview-trend">−0,8 kg diese Woche</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feat-inner">
+    <div class="pill">✦ Was der Tracker kann</div>
+    <h2>Einfach.<br><em>Offline. Privat.</em></h2>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon">📴</div>
+        <h3>100 % Offline</h3>
+        <p>Die HTML-Datei läuft direkt im Browser – ohne Internet, ohne Server, ohne Cloud. Einmal herunterladen, immer nutzen.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📈</div>
+        <h3>7-Tage-Trend</h3>
+        <p>Automatische Trendlinie über die letzten 7 Einträge. Du siehst sofort ob du auf Kurs bist – ohne Zahlen zu interpretieren.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔒</div>
+        <h3>DSGVO-unbedenklich</h3>
+        <p>Alle Daten bleiben ausschließlich auf deinem Gerät. Kein Tracking, kein Cookie-Banner, keine Datenweitergabe an Dritte.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📂</div>
+        <h3>Eine Datei – fertig</h3>
+        <p>Download, Doppelklick, eintragen. Keine Installation, kein Abo, kein Account. Funktioniert auf PC, Mac und Handy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-section">
+  <div class="steps-inner">
+    <div class="pill">✦ So geht's</div>
+    <h2>In <em>3 Schritten</em><br>loslegen.</h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Herunterladen</h4>
+          <p>HTML-Datei auf deinen PC, Mac oder Handy laden. Ein Klick auf den Button oben reicht.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Im Browser öffnen</h4>
+          <p>Doppelklick auf die Datei – fertig. Kein WLAN nötig, keine Installation, kein Login.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Täglich eintragen</h4>
+          <p>Gewicht eingeben, Trend beobachten, motiviert bleiben. Der 7-Tage-Trend zeigt dir ob du auf Kurs bist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Bereit <em>loszulegen?</em></h2>
+  <p>Gratis. Keine E-Mail nötig. Sofort nutzbar.</p>
+  <a href="gewichtstracker.html" download="gewichtstracker.html" class="btn btn-orange" style="font-size:16px;padding:0 36px;min-height:56px">
+    ↓ Gewichtstracker herunterladen
+  </a>
+  <p class="cta-note">Eine einzige .html-Datei · Keine Installation · Keine Daten verlassen dein Gerät</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div class="footer-logo">Abnehmen zum letzten Mal</div>
+      <div class="footer-links">
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+        <a href="mailto:david.rybka@gmx.de">Kontakt</a>
+      </div>
+    </div>
+    <p class="footer-disclaimer">© 2026 David Rybka · Affiliate-Hinweis: Diese Seite enthält Affiliate-Links zu Amazon und weiteren Partnern. Als Amazon-Partner verdiene ich an qualifizierten Käufen. Für dich entstehen keine zusätzlichen Kosten.</p>
+  </div>
+</footer>
+
+<script>
+function closeMob(){document.getElementById('mobNav').classList.remove('open');document.getElementById('ham').classList.remove('open')}
+document.getElementById('ham').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mobNav').classList.toggle('open')})
+</script>
+</body>
+</html>
