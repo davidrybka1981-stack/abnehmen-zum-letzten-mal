@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gewichtstracker – Abnehmen zum letzten Mal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #111111;
+    --surface: #1a1a1a;
+    --surface2: #222222;
+    --border: #333333;
+    --orange: #F57C00;
+    --orange-light: #FFB74D;
+    --orange-dark: #BF360C;
+    --white: #f0f0f0;
+    --gray: #999999;
+    --gray-light: #bbbbbb;
+    --green: #66BB6A;
+    --red: #ef5350;
+    --radius: 12px;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 2px solid var(--orange);
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  header p {
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  /* ── Inputs ── */
+  label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray-light);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus {
+    border-color: var(--orange);
+  }
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .input-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: #fff;
+    width: 100%;
+    padding: 14px;
+    font-size: 0.95rem;
+    margin-top: 16px;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--gray-light);
+  }
+  .btn-sm:hover { border-color: var(--orange); color: var(--orange); }
+  .btn-danger { color: var(--red); }
+  .btn-danger:hover { border-color: var(--red); }
+
+  /* ── Stats Grid ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stat-box {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--orange);
+  }
+  .stat-value.positive { color: var(--green); }
+  .stat-value.negative { color: var(--red); }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── Chart ── */
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--surface2);
+  }
+  canvas { display: block; width: 100%; }
+  .chart-hint {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* ── Table ── */
+  .entries-wrap {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+  }
+  td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:last-child td { border-bottom: none; }
+  .trend-up { color: var(--red); }
+  .trend-down { color: var(--green); }
+
+  /* ── Data Mgmt ── */
+  .data-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  #importFile { display: none; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+  footer p {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+  footer a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── Empty State ── */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gray);
+  }
+  .empty-state svg { margin-bottom: 12px; opacity: 0.4; }
+  .empty-state p { font-size: 0.85rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .input-row { grid-template-columns: 1fr; }
+    .input-row-2 { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    header h1 { font-size: 1.4rem; }
+    .stat-value { font-size: 1.2rem; }
+  }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--green);
+    color: #111;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  /* ── Setup overlay ── */
+  .setup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 16px;
+  }
+  .setup-box {
+    background: var(--surface);
+    border: 1px solid var(--orange);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .setup-box h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .setup-box p {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+  .setup-box .field { margin-bottom: 14px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <h1>⚖️ Gewichtstracker</h1>
+    <p>Kein Verzicht. Kein Hunger. Ein System das in den Alltag passt.</p>
+  </header>
+
+  <!-- Setup (hidden after first config) -->
+  <div id="setupOverlay" class="setup-overlay" style="display:none;">
+    <div class="setup-box">
+      <h2>Willkommen!</h2>
+      <p>Trage dein Start- und Zielgewicht ein, um loszulegen.</p>
+      <div class="field">
+        <label for="setupStart">Startgewicht (kg)</label>
+        <input type="number" id="setupStart" step="0.1" min="40" max="300" placeholder="z.B. 95.0">
+      </div>
+      <div class="field">
+        <label for="setupGoal">Zielgewicht (kg)</label>
+        <input type="number" id="setupGoal" step="0.1" min="40" max="300" placeholder="z.B. 80.0">
+      </div>
+      <button class="btn btn-primary" onclick="saveSetup()">Los geht's →</button>
+    </div>
+  </div>
+
+  <!-- Quick Entry -->
+  <div class="card">
+    <div class="card-title">Neuer Eintrag</div>
+    <div class="input-row-2">
+      <div>
+        <label for="entryDate">Datum</label>
+        <input type="date" id="entryDate">
+      </div>
+      <div>
+        <label for="entryWeight">Gewicht (kg)</label>
+        <input type="number" id="entryWeight" step="0.1" min="30" max="400" placeholder="z.B. 92.3">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="addEntry()">✓ Eintragen</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="card" id="statsCard" style="display:none;">
+    <div class="card-title">Dein Fortschritt</div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-value" id="statCurrent">–</div>
+        <div class="stat-label">Aktuell</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statLost">–</div>
+        <div class="stat-label">Abgenommen</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statTrend">–</div>
+        <div class="stat-label">7-Tage-Trend</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statETA">–</div>
+        <div class="stat-label">Ziel erreicht ca.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="card" id="chartCard" style="display:none;">
+    <div class="card-title">Verlauf</div>
+    <div class="chart-wrap">
+      <canvas id="chart" height="280"></canvas>
+    </div>
+    <p class="chart-hint">● Tagesgewicht&ensp; ━ 7-Tage-Durchschnitt&ensp; ┈ Zielgewicht<br>Tägliche Schwankungen sind normal – achte auf die Trendlinie!</p>
+  </div>
+
+  <!-- Entries Table -->
+  <div class="card" id="tableCard" style="display:none;">
+    <div class="card-title">Alle Einträge</div>
+    <div class="entries-wrap">
+      <table>
+        <thead>
+          <tr><th>Datum</th><th>Gewicht</th><th>Diff.</th><th></th></tr>
+        </thead>
+        <tbody id="entriesBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Data Management -->
+  <div class="card">
+    <div class="card-title">Datensicherung</div>
+    <p style="font-size:0.8rem;color:var(--gray);margin-bottom:12px;">
+      Deine Daten werden nur lokal in diesem Browser gespeichert. Sichere sie regelmäßig!
+    </p>
+    <div class="data-actions">
+      <button class="btn btn-sm" onclick="exportData()">↓ Daten exportieren</button>
+      <button class="btn btn-sm" onclick="document.getElementById('importFile').click()">↑ Daten importieren</button>
+      <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+      <button class="btn btn-sm" onclick="editSetup()">⚙ Ziel ändern</button>
+      <button class="btn btn-sm btn-danger" onclick="resetAll()">✕ Alle Daten löschen</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Erstellt basierend auf dem System aus<br>
+      <a href="https://www.amazon.de/dp/B0GYBB4RN8?tag=abnehmenzumle-21" target="_blank" rel="noopener">
+        📖 „Abnehmen zum letzten Mal" – Jetzt auf Amazon
+      </a><br>
+      <a href="https://abnehmen-zum-letzten-mal.de" target="_blank" rel="noopener">abnehmen-zum-letzten-mal.de</a>
+    </p>
+  </footer>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Storage Keys ──
+const KEYS = { config: 'wt_config', entries: 'wt_entries' };
+
+// ── State ──
+let config = null; // { startWeight, goalWeight, startDate }
+let entries = [];  // [{ date: 'YYYY-MM-DD', weight: number }]
+
+// ── Init ──
+function init() {
+  loadData();
+  document.getElementById('entryDate').valueAsDate = new Date();
+  if (!config) {
+    document.getElementById('setupOverlay').style.display = 'flex';
+  } else {
+    render();
+  }
+  // Enter key support
+  document.getElementById('entryWeight').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addEntry();
+  });
+}
+
+function loadData() {
+  try {
+    const c = localStorage.getItem(KEYS.config);
+    const e = localStorage.getItem(KEYS.entries);
+    if (c) config = JSON.parse(c);
+    if (e) entries = JSON.parse(e);
+  } catch(err) { console.error('Load error', err); }
+}
+
+function saveData() {
+  localStorage.setItem(KEYS.config, JSON.stringify(config));
+  localStorage.setItem(KEYS.entries, JSON.stringify(entries));
+}
+
+// ── Setup ──
+function saveSetup() {
+  const sw = parseFloat(document.getElementById('setupStart').value);
+  const gw = parseFloat(document.getElementById('setupGoal').value);
+  if (!sw || !gw || sw < 40 || gw < 40) { toast('Bitte gültige Werte eingeben', true); return; }
+  config = { startWeight: sw, goalWeight: gw, startDate: new Date().toISOString().slice(0,10) };
+  saveData();
+  document.getElementById('setupOverlay').style.display = 'none';
+  render();
+  toast('Einrichtung abgeschlossen!');
+}
+
+function editSetup() {
+  if (!config) return;
+  document.getElementById('setupStart').value = config.startWeight;
+  document.getElementById('setupGoal').value = config.goalWeight;
+  document.getElementById('setupOverlay').style.display = 'flex';
+}
+
+// ── Entries ──
+function addEntry() {
+  const dateStr = document.getElementById('entryDate').value;
+  const weight = parseFloat(document.getElementById('entryWeight').value);
+  if (!dateStr || !weight || weight < 30 || weight > 400) { toast('Bitte Datum und gültiges Gewicht eingeben', true); return; }
+
+  // Check duplicate date
+  const existing = entries.findIndex(e => e.date === dateStr);
+  if (existing >= 0) {
+    entries[existing].weight = weight;
+    toast('Eintrag aktualisiert');
+  } else {
+    entries.push({ date: dateStr, weight });
+    toast('Eintrag gespeichert!');
+  }
+
+  entries.sort((a, b) => a.date.localeCompare(b.date));
+  saveData();
+  document.getElementById('entryWeight').value = '';
+  document.getElementById('entryDate').valueAsDate = new Date();
+  render();
+}
+
+function deleteEntry(idx) {
+  entries.splice(idx, 1);
+  saveData();
+  render();
+  toast('Eintrag gelöscht');
+}
+
+// ── Render ──
+function render() {
+  const hasEntries = entries.length > 0;
+  document.getElementById('statsCard').style.display = hasEntries ? 'block' : 'none';
+  document.getElementById('chartCard').style.display = hasEntries ? 'block' : 'none';
+  document.getElementById('tableCard').style.display = hasEntries ? 'block' : 'none';
+
+  if (hasEntries) {
+    updateStats();
+    drawChart();
+    renderTable();
+  }
+}
+
+// ── Stats ──
+function updateStats() {
+  const latest = entries[entries.length - 1].weight;
+  const lost = config.startWeight - latest;
+  const pct = (lost / config.startWeight * 100);
+  const trend7 = calc7DayAvg();
+
+  document.getElementById('statCurrent').textContent = latest.toFixed(1) + ' kg';
+
+  const lostEl = document.getElementById('statLost');
+  lostEl.textContent = (lost >= 0 ? '-' : '+') + Math.abs(lost).toFixed(1) + ' kg';
+  lostEl.className = 'stat-value ' + (lost > 0 ? 'positive' : lost < 0 ? 'negative' : '');
+
+  const trendEl = document.getElementById('statTrend');
+  if (trend7 !== null) {
+    trendEl.textContent = trend7.toFixed(1) + ' kg';
+    trendEl.className = 'stat-value';
+  } else {
+    trendEl.textContent = '–';
+    trendEl.className = 'stat-value';
+  }
+
+  // ETA
+  const etaEl = document.getElementById('statETA');
+  if (entries.length >= 7 && trend7 !== null) {
+    const first7Avg = calcAvgRange(0, Math.min(7, entries.length));
+    const weeklyLoss = first7Avg - trend7;
+    const remaining = trend7 - config.goalWeight;
+    if (weeklyLoss > 0.05 && remaining > 0) {
+      const weeksLeft = remaining / weeklyLoss;
+      const eta = new Date();
+      eta.setDate(eta.getDate() + Math.round(weeksLeft * 7));
+      etaEl.textContent = eta.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' });
+    } else if (remaining <= 0) {
+      etaEl.textContent = '🎉 Erreicht!';
+    } else {
+      etaEl.textContent = '–';
+    }
+  } else {
+    etaEl.textContent = 'ab 7 Tagen';
+    etaEl.style.fontSize = '0.8rem';
+  }
+}
+
+function calc7DayAvg() {
+  if (entries.length < 1) return null;
+  const last7 = entries.slice(-7);
+  return last7.reduce((s, e) => s + e.weight, 0) / last7.length;
+}
+
+function calcAvgRange(start, end) {
+  const slice = entries.slice(start, end);
+  return slice.reduce((s, e) => s + e.weight, 0) / slice.length;
+}
+
+// ── Moving average helper ──
+function calcMovingAvg(data, window) {
+  const result = [];
+  for (let i = 0; i < data.length; i++) {
+    const start = Math.max(0, i - window + 1);
+    const slice = data.slice(start, i + 1);
+    result.push(slice.reduce((s, e) => s + e.weight, 0) / slice.length);
+  }
+  return result;
+}
+
+// ── Chart ──
+function drawChart() {
+  const canvas = document.getElementById('chart');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  const W = rect.width;
+  const H = 280;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Padding
+  const pad = { top: 20, right: 20, bottom: 40, left: 52 };
+  const cw = W - pad.left - pad.right;
+  const ch = H - pad.top - pad.bottom;
+
+  // Data
+  const weights = entries.map(e => e.weight);
+  const movingAvg = calcMovingAvg(entries, 7);
+  const goal = config.goalWeight;
+
+  const allVals = [...weights, ...movingAvg, goal];
+  let minW = Math.min(...allVals) - 1;
+  let maxW = Math.max(...allVals) + 1;
+  if (maxW - minW < 4) { minW -= 2; maxW += 2; }
+
+  const xScale = (i) => pad.left + (entries.length > 1 ? (i / (entries.length - 1)) * cw : cw / 2);
+  const yScale = (v) => pad.top + (1 - (v - minW) / (maxW - minW)) * ch;
+
+  // Clear
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = '#2a2a2a';
+  ctx.lineWidth = 1;
+  const gridSteps = 5;
+  for (let i = 0; i <= gridSteps; i++) {
+    const v = minW + (maxW - minW) * (i / gridSteps);
+    const y = yScale(v);
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(W - pad.right, y);
+    ctx.stroke();
+    // Label
+    ctx.fillStyle = '#666';
+    ctx.font = '11px Montserrat, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(v.toFixed(1), pad.left - 8, y + 4);
+  }
+
+  // Date labels
+  ctx.fillStyle = '#666';
+  ctx.font = '10px Montserrat, sans-serif';
+  ctx.textAlign = 'center';
+  if (entries.length <= 14) {
+    entries.forEach((e, i) => {
+      const x = xScale(i);
+      const d = new Date(e.date);
+      ctx.fillText(d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' }), x, H - pad.bottom + 20);
+    });
+  } else {
+    const step = Math.ceil(entries.length / 7);
+    for (let i = 0; i < entries.length; i += step) {
+      const x = xScale(i);
+      const d = new Date(entries[i].date);
+      ctx.fillText(d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' }), x, H - pad.bottom + 20);
+    }
+  }
+
+  // Goal line (dashed)
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([6, 4]);
+  const goalY = yScale(goal);
+  ctx.beginPath();
+  ctx.moveTo(pad.left, goalY);
+  ctx.lineTo(W - pad.right, goalY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#555';
+  ctx.font = '10px Montserrat, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Ziel ' + goal.toFixed(1), W - pad.right - 60, goalY - 6);
+
+  // Data points
+  if (entries.length === 1) {
+    ctx.fillStyle = 'rgba(245,124,0,0.7)';
+    ctx.beginPath();
+    ctx.arc(xScale(0), yScale(weights[0]), 5, 0, Math.PI * 2);
+    ctx.fill();
+  } else {
+    // Weight dots
+    ctx.fillStyle = 'rgba(245,124,0,0.35)';
+    weights.forEach((w, i) => {
+      ctx.beginPath();
+      ctx.arc(xScale(i), yScale(w), 3.5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Moving avg line
+    ctx.strokeStyle = '#F57C00';
+    ctx.lineWidth = 2.5;
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    movingAvg.forEach((v, i) => {
+      const x = xScale(i), y = yScale(v);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Glow effect for trend line
+    ctx.strokeStyle = 'rgba(245,124,0,0.15)';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    movingAvg.forEach((v, i) => {
+      const x = xScale(i), y = yScale(v);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  }
+}
+
+// ── Table ──
+function renderTable() {
+  const tbody = document.getElementById('entriesBody');
+  let html = '';
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const e = entries[i];
+    const d = new Date(e.date).toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: '2-digit' });
+    let diff = '';
+    let cls = '';
+    if (i > 0) {
+      const delta = e.weight - entries[i - 1].weight;
+      diff = (delta >= 0 ? '+' : '') + delta.toFixed(1);
+      cls = delta < 0 ? 'trend-down' : delta > 0 ? 'trend-up' : '';
+    }
+    html += `<tr>
+      <td>${d}</td>
+      <td>${e.weight.toFixed(1)} kg</td>
+      <td class="${cls}">${diff}</td>
+      <td><button class="btn btn-sm btn-danger" onclick="deleteEntry(${i})" title="Löschen">✕</button></td>
+    </tr>`;
+  }
+  tbody.innerHTML = html;
+}
+
+// ── Export / Import ──
+function exportData() {
+  const data = JSON.stringify({ config, entries, exportDate: new Date().toISOString() }, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gewichtstracker_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Backup heruntergeladen!');
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.config && data.entries) {
+        config = data.config;
+        entries = data.entries;
+        entries.sort((a, b) => a.date.localeCompare(b.date));
+        saveData();
+        render();
+        toast('Daten erfolgreich importiert!');
+      } else {
+        toast('Ungültiges Dateiformat', true);
+      }
+    } catch(err) {
+      toast('Fehler beim Importieren', true);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function resetAll() {
+  if (!confirm('Alle Daten unwiderruflich löschen?')) return;
+  if (!confirm('Bist du sicher? Das kann nicht rückgängig gemacht werden!')) return;
+  localStorage.removeItem(KEYS.config);
+  localStorage.removeItem(KEYS.entries);
+  config = null;
+  entries = [];
+  document.getElementById('statsCard').style.display = 'none';
+  document.getElementById('chartCard').style.display = 'none';
+  document.getElementById('tableCard').style.display = 'none';
+  document.getElementById('setupOverlay').style.display = 'flex';
+  toast('Alle Daten gelöscht');
+}
+
+// ── Toast ──
+function toast(msg, isError) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.background = isError ? 'var(--red)' : 'var(--green)';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+// ── Resize ──
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { if (entries.length > 0) drawChart(); }, 150);
+});
+
+// ── Go ──
+init();
+</script>
+</body>
+</html>
