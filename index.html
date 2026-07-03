@@ -318,7 +318,10 @@ input[type="range"]{width:100%;accent-color:var(--o);height:4px;cursor:pointer;b
 .emp-cat{margin-top:56px}
 .emp-cat-title{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:900;color:var(--stone);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border)}
 .emp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.emp-card{background:rgba(255,255,255,.45);border:1.5px solid rgba(0,0,0,.1);border-radius:20px;padding:20px;transition:.24s;display:block;color:var(--stone);position:relative;overflow:hidden}
+.emp-card{background:#fff;border:1.5px solid rgba(0,0,0,.08);border-radius:16px;padding:22px 20px;transition:.2s;display:flex;flex-direction:column;gap:8px;color:var(--stone);position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.emp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12);border-color:var(--o)}
+.emp-card-featured{border-color:var(--o);background:linear-gradient(135deg,#fff 80%,#fff8f5)}
+.emp-card-featured .emp-lbl{background:var(--o);color:#fff}
 .emp-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(244,90,5,.06),transparent);opacity:0;transition:.24s}
 .emp-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--o)}
 .emp-card:hover::after{opacity:1}
@@ -760,7 +763,6 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
       <div class="emp-cat-title">🌿 Supplements</div>
       <div class="emp-grid">
         <a href="https://nigela.de/?ref=DAVID10" class="emp-card" target="_blank" rel="noopener"><div class="emp-lbl">10% Rabatt</div><div class="emp-name">Nigela Schwarzkümmelöl · Code DAVID10</div><div class="emp-arrow">→</div></a>
-        <a href="https://www.awin1.com/cread.php?s=3133493&v=29533&q=436184&r=2865987" class="emp-card" target="_blank" rel="sponsored"><div class="emp-lbl">App · 20% Rabatt</div><div class="emp-name">YAZIO · Kalorien tracken leicht gemacht</div><div class="emp-arrow">→</div></a>
       </div>
     </div>
 
@@ -782,6 +784,7 @@ footer{background:#000;border-top:1px solid rgba(255,122,24,.2);padding:48px 0 3
         <a href="https://www.amazon.de/dp/B0DYF82545?tag=abnehmenzumle-21" class="emp-card" target="_blank" rel="noopener"><div class="emp-lbl">Günstig ~35€</div><div class="emp-name">Xiaomi Smart Band 10 · 8.000+ Bewertungen</div><div class="emp-arrow">→</div></a>
         <a href="https://www.amazon.de/dp/B0B6WRFY5S?tag=abnehmenzumle-21" class="emp-card" target="_blank" rel="noopener"><div class="emp-lbl">Mittelklasse</div><div class="emp-name">Fitbit Inspire 3 · präzises Tracking</div><div class="emp-arrow">→</div></a>
         <a href="https://www.amazon.de/dp/B0953X73TP?tag=abnehmenzumle-21" class="emp-card" target="_blank" rel="noopener"><div class="emp-lbl">Premium ~139€</div><div class="emp-name">Garmin Forerunner 55 · 11.000+ Bewertungen</div><div class="emp-arrow">→</div></a>
+        <a href="https://www.awin1.com/cread.php?s=3133493&v=29533&q=436184&r=2865987" class="emp-card emp-card-featured" target="_blank" rel="sponsored"><div class="emp-lbl">App · 20% Rabatt</div><div class="emp-name">YAZIO · Kalorien tracken leicht gemacht</div><div class="emp-arrow">→</div></a>
       </div>
     </div>
 
