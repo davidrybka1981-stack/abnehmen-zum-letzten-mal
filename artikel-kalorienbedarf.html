@@ -19,6 +19,46 @@
 <meta property="article:published_time" content="2026-04-01T08:00:00+02:00">
 <meta property="article:author" content="David Rybka">
 <meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist der Kalorienbedarf für einen Mann?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt von Gewicht, Größe, Alter und Aktivitätslevel ab, es gibt keinen pauschalen Wert. Ein 40-jähriger Mann mit 80 kg und 178 cm hat z.B. einen Grundumsatz von rund 1.718 kcal, bei leichter Aktivität einen Gesamtbedarf von etwa 2.362 kcal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist der Kalorienbedarf für eine Frau?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Auch hier zählen individuelle Werte mehr als das Geschlecht allein. Eine 38-jährige Frau mit 65 kg und 165 cm hat z.B. einen Grundumsatz von rund 1.330 kcal, bei leichter Aktivität einen Gesamtbedarf von etwa 1.829 kcal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Kalorien braucht man pro Tag zum Abnehmen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gesamtbedarf minus 300 bis 500 kcal Defizit. Bei einem Gesamtbedarf von 2.362 kcal wären das 1.862 bis 2.062 kcal täglich, ein Defizit, das Fettabbau ermöglicht, ohne den Stoffwechsel zu stark zu bremsen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reicht der Grundumsatz als Richtwert oder brauche ich den Gesamtbedarf?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für die Ernährungsplanung zählt der Gesamtbedarf (Grundumsatz mal Aktivitätsfaktor), nicht der Grundumsatz allein. Der Grundumsatz ist nur die Basis, ohne jede Bewegung, die die wenigsten Menschen im Alltag tatsächlich haben."
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -150,7 +190,7 @@ footer a{color:var(--o)}
 
   <p>In diesem Artikel erkläre ich dir, wie du deinen persönlichen Kalorienbedarf berechnest, was der Grundumsatz bedeutet, welchen Aktivitätsfaktor du wählen solltest und wie hoch dein Kaloriendefizit sein darf, ohne dass dein Körper in den Sparmodus schaltet.</p>
 
-  <div class="highlight">
+  <div class="hbox">
     <p><strong>Das Wichtigste vorab:</strong> Alle hier genannten Werte sind wissenschaftlich fundierte Schätzwerte. Dein tatsächlicher Bedarf kann leicht abweichen. Gleiche dein Ergebnis nach 2–3 Wochen mit der Waage ab und passe es bei Bedarf an.</p>
   </div>
 
@@ -179,6 +219,20 @@ footer a{color:var(--o)}
   <p>Ein 40-jähriger Mann, 80 kg schwer, 178 cm groß:</p>
   <p>(10 × 80) + (6,25 × 178) − (5 × 40) + 5 = 800 + 1.112,5 − 200 + 5 = <strong>1.717,5 kcal</strong></p>
   <p>Das ist sein Grundumsatz die Energiemenge, die sein Körper täglich verbraucht, ohne einen einzigen Schritt zu gehen.</p>
+
+  <h2>Kalorienbedarf Mann vs. Frau: Der Unterschied</h2>
+  <p>Die Mifflin-St-Jeor-Formel unterscheidet zwischen Männern und Frauen, weil Männer im Schnitt mehr Muskelmasse und einen höheren Grundumsatz haben. Der Unterschied in der Formel: Bei Männern wird am Ende +5 gerechnet, bei Frauen −161. Das ergibt bei gleichem Gewicht und gleicher Größe einen spürbaren Unterschied.</p>
+
+  <p>Zum Vergleich, eine 38-jährige Frau, 65 kg schwer, 165 cm groß:</p>
+  <p>(10 × 65) + (6,25 × 165) − (5 × 38) − 161 = 650 + 1.031,25 − 190 − 161 = <strong>1.330,25 kcal</strong></p>
+
+  <table>
+    <tr><th>Beispielperson</th><th>Grundumsatz</th><th>Bei PAL 1,375 (leicht aktiv)</th></tr>
+    <tr><td>Mann, 40 J., 80 kg, 178 cm</td><td>1.717,5 kcal</td><td>2.362 kcal</td></tr>
+    <tr><td>Frau, 38 J., 65 kg, 165 cm</td><td>1.330,25 kcal</td><td>1.829 kcal</td></tr>
+  </table>
+
+  <p>Wichtig: Das sind Beispielwerte für diese konkreten Körperdaten, kein pauschaler "Männer brauchen X, Frauen brauchen Y"-Wert. Dein eigener Bedarf hängt von deinem Gewicht, deiner Größe, deinem Alter und deiner Aktivität ab, nicht allein vom Geschlecht.</p>
 
   <h2>Der Aktivitätsfaktor (PAL-Wert)</h2>
 
@@ -245,9 +299,23 @@ footer a{color:var(--o)}
 
   <h2>Jetzt deinen Kalorienbedarf berechnen</h2>
 
-  <p>Du musst die Formel nicht selbst ausrechnen. Ich habe einen kostenlosen Rechner auf dieser Seite gebaut, der dir deinen Grundumsatz, Gesamtbedarf und dein persönliches Kalorienziel in Sekunden berechnet basierend auf der Mifflin-St-Jeor-Formel.</p>
+  <p>Du musst die Formel nicht selbst ausrechnen. Ich habe einen kostenlosen Rechner gebaut, der dir deinen Grundumsatz, Gesamtbedarf und dein persönliches Kalorienziel in Sekunden berechnet basierend auf der Mifflin-St-Jeor-Formel.</p>
 
-  
+  <div class="cta-box">
+    <h3>Kostenloser Kalorienbedarf-Rechner</h3>
+    <p>Gewicht, Größe, Alter, Aktivitätslevel eingeben, Ergebnis in Sekunden.</p>
+    <a href="/kalorienbedarf-rechner.html" class="cta-btn">Jetzt Kalorienbedarf berechnen →</a>
+  </div>
+
+  <h2>Häufige Fragen</h2>
+  <h3>Wie hoch ist der Kalorienbedarf für einen Mann?</h3>
+  <p>Das hängt von Gewicht, Größe, Alter und Aktivitätslevel ab, es gibt keinen pauschalen Wert. Ein 40-jähriger Mann mit 80 kg und 178 cm hat z.B. einen Grundumsatz von rund 1.718 kcal, bei leichter Aktivität einen Gesamtbedarf von etwa 2.362 kcal. Nutze den Rechner oben für deine individuellen Werte.</p>
+  <h3>Wie hoch ist der Kalorienbedarf für eine Frau?</h3>
+  <p>Auch hier zählen individuelle Werte mehr als das Geschlecht allein. Eine 38-jährige Frau mit 65 kg und 165 cm hat z.B. einen Grundumsatz von rund 1.330 kcal, bei leichter Aktivität einen Gesamtbedarf von etwa 1.829 kcal.</p>
+  <h3>Wie viele Kalorien braucht man pro Tag zum Abnehmen?</h3>
+  <p>Gesamtbedarf minus 300 bis 500 kcal Defizit. Bei einem Gesamtbedarf von 2.362 kcal wären das 1.862 bis 2.062 kcal täglich, ein Defizit, das Fettabbau ermöglicht, ohne den Stoffwechsel zu stark zu bremsen.</p>
+  <h3>Reicht der Grundumsatz als Richtwert oder brauche ich den Gesamtbedarf?</h3>
+  <p>Für die Ernährungsplanung zählt der Gesamtbedarf (Grundumsatz × Aktivitätsfaktor), nicht der Grundumsatz allein. Der Grundumsatz ist nur die Basis, ohne jede Bewegung, die die wenigsten Menschen im Alltag tatsächlich haben.</p>
 
   <h2>Fazit</h2>
 
