@@ -1186,7 +1186,10 @@ function cbToggle(){
   cbOpen=!cbOpen;
   document.getElementById('cb-win').classList.toggle('open',cbOpen);
   document.getElementById('cb-badge').style.display='none';
-  if(cbOpen) document.getElementById('cb-input').focus();
+  if(cbOpen){
+    document.getElementById('cb-input').focus();
+    if(typeof gtag==='function') gtag('event','chatbot_opened');
+  }
 }
 
 function cbChip(el){
@@ -1219,6 +1222,7 @@ async function cbSend(e){
     if(text.toUpperCase().startsWith('ABZLM') || CB_CODES.includes(text.toUpperCase())){
       if(CB_CODES.includes(text.toUpperCase())){
         cbUnlocked=true;
+        if(typeof gtag==='function') gtag('event','chatbot_code_unlocked');
         document.getElementById('cb-input').disabled=false;
         document.getElementById('cb-send').disabled=false;
         const d=document.getElementById('cb-msgs');
@@ -1241,6 +1245,7 @@ async function cbSend(e){
     const d=document.getElementById('cb-msgs');
     // Only show once
     if(document.getElementById('cb-limit-msg')) return;
+    if(typeof gtag==='function') gtag('event','chatbot_limit_reached');
     const m=document.createElement('div');
     m.id='cb-limit-msg';
     m.className='cb-msg bot';
@@ -1257,6 +1262,10 @@ async function cbSend(e){
   document.getElementById('cb-chips').style.display='none';
   document.getElementById('cb-send').disabled=true;
   cbTyping=true;
+  if(typeof gtag==='function'){
+    if(cbCount===0) gtag('event','chatbot_first_message');
+    gtag('event','chatbot_message_sent');
+  }
   cbCount++;
 
   // Update counter display
