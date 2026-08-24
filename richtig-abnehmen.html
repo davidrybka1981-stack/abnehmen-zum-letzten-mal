@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richtig abnehmen – Essen mit System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #060606;
+    --navy-soft: #0d0d0d;
+    --navy-card: #121212;
+    --orange: #ff7a45;
+    --orange-dim: #d9622f;
+    --white: #f6f5f1;
+    --grey: #8b93a7;
+    --line: #262626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--navy);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .mono {
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    color: var(--orange);
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 88px 0 64px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -160px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(255,122,69,0.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .top-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .mini-cover-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 8px 14px 8px 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--navy-card);
+    transition: border-color 0.15s ease;
+  }
+
+  .mini-cover-link:hover { border-color: var(--orange); }
+
+  .mini-cover {
+    width: 34px;
+    height: 48px;
+    border-radius: 3px;
+    background: linear-gradient(160deg, #1c1c1c, #0a0a0a);
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.42rem;
+    line-height: 1.1;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .mini-cover span { color: var(--orange); }
+
+  .mini-cover-text {
+    font-size: 0.78rem;
+    color: var(--grey);
+    line-height: 1.3;
+  }
+
+  .mini-cover-text strong { display: block; color: var(--white); font-size: 0.85rem; }
+
+  .home-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--grey);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 28px;
+    margin-top: -14px;
+  }
+
+  .home-link:hover { color: var(--orange); }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5.5vw, 2.9rem);
+    line-height: 1.16;
+    margin: 18px 0 20px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
+  .hero p.lead {
+    font-size: 1.08rem;
+    color: #cfd3de;
+    max-width: 54ch;
+  }
+
+  .scroll-cue {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--grey);
+    font-size: 0.82rem;
+  }
+
+  .scroll-cue .dash {
+    width: 28px; height: 1px; background: var(--grey);
+    animation: pulse-dash 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dash {
+    0%, 100% { width: 28px; opacity: 0.5; }
+    50% { width: 44px; opacity: 1; }
+  }
+
+  /* SECTION shared */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+
+  section h2 {
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    margin: 10px 0 18px;
+    line-height: 1.25;
+  }
+
+  section p { color: #c4c9d6; max-width: 58ch; }
+
+  /* BATTERY / AKKU SECTION — signature element */
+  .akku-section { padding-bottom: 64px; }
+
+  .akku-visual {
+    margin-top: 40px;
+    background: var(--navy-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 28px 24px;
+  }
+
+  .akku-track {
+    position: relative;
+    height: 54px;
+    background: #0d1220;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .akku-track::after {
+    /* battery nub */
+    content: "";
+    position: absolute;
+    right: -9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 20px;
+    background: var(--line);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .akku-fill {
+    height: 100%;
+    width: 92%;
+    background: linear-gradient(90deg, var(--orange-dim), var(--orange));
+    border-radius: 6px 0 0 6px;
+    transition: width 1.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .akku-track.drained .akku-fill {
+    width: 6%;
+    background: linear-gradient(90deg, #4a3226, #6b3a24);
+  }
+
+  .akku-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--grey);
+  }
+
+  .akku-labels span.now { color: var(--orange); }
+
+  .akku-caption {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.95rem;
+    color: #c4c9d6;
+  }
+
+  .akku-caption strong { color: var(--white); }
+
+  /* SYSTEM LIST */
+  .system-list {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .system-item {
+    display: flex;
+    gap: 18px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .system-item:first-child { border-top: none; }
+
+  .system-item .mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid var(--orange);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .system-item h3 {
+    font-size: 1.02rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .system-item p { font-size: 0.92rem; color: #a9afbf; }
+
+  /* BOOK CARD */
+  .book-card {
+    margin-top: 36px;
+    background: linear-gradient(155deg, var(--navy-card), var(--navy-soft));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .book-cover {
+    width: 118px;
+    height: 168px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: linear-gradient(160deg, #1c2438, #0d111c);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .book-cover .t1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; line-height: 1.15; }
+  .book-cover .t2 { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--orange); margin-top: 8px; letter-spacing: 0.08em; }
+
+  .book-info h3 { font-size: 1.25rem; margin-bottom: 6px; }
+  .book-info p { font-size: 0.9rem; color: #a9afbf; margin-bottom: 18px; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: var(--navy);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 13px 24px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .cta-btn:hover { background: #ff8a5c; transform: translateY(-1px); }
+  .cta-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+  .cta-btn svg { width: 15px; height: 15px; }
+
+  @media (max-width: 560px) {
+    .book-card { flex-direction: column; text-align: center; align-items: flex-start; }
+    .book-card { align-items: center; }
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  footer p { color: var(--grey); font-size: 0.82rem; }
+  footer a { color: var(--grey); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <section class="hero" style="border-top: none;">
+      <div class="top-links">
+        <a class="mini-cover-link" href="https://www.amazon.de/dp/B0H3MFW557" target="_blank" rel="noopener">
+          <div class="mini-cover">ESSEN<br>MIT<br><span>SYSTEM</span></div>
+          <div class="mini-cover-text"><strong>Essen mit System</strong>Buch auf Amazon ansehen</div>
+        </a>
+      </div>
+      <a class="home-link" href="https://abnehmen-zum-letzten-mal.de">← Zur Startseite</a>
+
+      <p class="mono">Kein Diätplan. Ein System.</p>
+      <h1>Du weißt wahrscheinlich längst, wie es geht. Du weißt nur nicht, wie du es in deinen Alltag bekommst.</h1>
+      <p class="lead">Ich bin kein Ernährungsberater und kein Fitness-Influencer. Ich bin Familienvater mit Job, Alltag und Hobbys. Vielleicht geht es dir wie mir früher.</p>
+
+      <div class="scroll-cue"><div class="dash"></div> Meine Geschichte</div>
+    </section>
+
+    <section>
+      <p class="mono">Vielleicht kennst du das</p>
+      <p>Mir ging es jahrelang genauso. Irgendwann dachte ich sogar: Vielleicht kann ich einfach nicht abnehmen. Vielleicht ist mein Stoffwechsel kaputt.</p>
+      <p style="margin-top:16px;"><strong style="color:var(--white);">Heute weiß ich: Mir fehlte nicht noch mehr Wissen. Mir fehlte ein System.</strong></p>
+      <p style="margin-top:16px;">Ich habe angefangen, das Wissen über Ernährung, Kalorien, Gewohnheiten und Bewegung so für mich zu nutzen, dass es zu meinem Alltag mit Vollzeitjob und zwei Kindern passt.</p>
+      <p style="margin-top:16px;">Und obwohl ich gefühlt weniger kämpfen musste als bei meinen früheren Versuchen, habe ich fast 10&nbsp;kg abgenommen.</p>
+      <p style="margin-top:16px;">Heute weiß ich auch, was bei mir den Heißhunger ausgelöst hat und wie ich ihn weitgehend losgeworden bin.</p>
+    </section>
+
+    <section class="akku-section">
+      <p class="mono">Das eigentliche Problem</p>
+      <h2>Das Problem ist oft nicht das Wissen.</h2>
+      <p>Du weißt wahrscheinlich längst, dass ein Kaloriendefizit wichtig ist und Bewegung hilft. Aber dann kommt der Alltag.</p>
+
+      <div class="akku-visual">
+        <div class="akku-track" id="akkuTrack">
+          <div class="akku-fill" id="akkuFill"></div>
+        </div>
+        <div class="akku-labels">
+          <span>7:00 Uhr</span>
+          <span>12:00 Uhr</span>
+          <span>18:00 Uhr</span>
+          <span class="now" id="akkuTimeLabel">21:30 Uhr</span>
+        </div>
+        <div class="akku-caption">
+          <strong>Stell dir deine Motivation wie einen Akku vor.</strong> Morgens ist er noch voll. Dann kommen Arbeit, Termine, Familie und Stress. Und ausgerechnet abends, wenn der Akku fast leer ist, sollst du plötzlich besonders diszipliniert sein.
+        </div>
+      </div>
+
+      <p style="margin-top:28px;">Genau da hat mein System angesetzt. Ich wollte möglichst viele Entscheidungen schon treffen, bevor der Akku leer ist.</p>
+    </section>
+
+    <section>
+      <p class="mono">Essen mit System</p>
+      <h2>Essen mit System</h2>
+      <p>Aus diesem Ansatz ist mein Buch „Essen mit System" entstanden. Ernährung verstehen. Alltag planen. Routinen aufbauen. Keine Wunderdiät und kein Versprechen, dass Abnehmen immer einfach ist. Sondern ein System, das mir geholfen hat, mein Wissen endlich dauerhaft umzusetzen und selbst fast 10&nbsp;kg abzunehmen.</p>
+
+      <div class="system-list">
+        <div class="system-item">
+          <div class="mark"></div>
+          <div>
+            <h3>Struktur statt Spontanität</h3>
+            <p>Entscheidungen stehen fest, bevor der Tag sie dir abverlangt.</p>
+          </div>
+        </div>
+        <div class="system-item">
+          <div class="mark"></div>
+          <div>
+            <h3>Alltag statt Idealbedingungen</h3>
+            <p>Entwickelt neben Vollzeitjob und zwei kleinen Kindern. Nicht im Ausnahmezustand Urlaub.</p>
+          </div>
+        </div>
+        <div class="system-item">
+          <div class="mark"></div>
+          <div>
+            <h3>Auch für die schwierigen Tage</h3>
+            <p>Funktioniert gerade dann, wenn der Akku schon fast leer ist.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover">
+          <div>
+            <div class="t1">Essen mit System</div>
+            <div class="t2">David · Ratgeber</div>
+          </div>
+        </div>
+        <div class="book-info">
+          <h3>Essen mit System</h3>
+          <p>Mein System für Ernährung im echten Alltag. Verständlich, alltagstauglich und nicht darauf angewiesen, dass du jeden Tag hochmotiviert bist.</p>
+          <a class="cta-btn" href="https://www.amazon.de/dp/B0H3MFW557" target="_blank" rel="noopener">
+            Essen mit System bei Amazon ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Teil von <a href="https://abnehmen-zum-letzten-mal.de">abnehmen-zum-letzten-mal.de</a></p>
+    </footer>
+
+  </div>
+
+<script>
+  // Akku entlädt sich beim Scrollen in den Sichtbereich — visualisiert den Tagesverlauf
+  const track = document.getElementById('akkuTrack');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => track.classList.add('drained'), 500);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(track);
+</script>
+
+</body>
+</html>
